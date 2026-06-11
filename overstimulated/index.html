@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Reset — Reclaim Your Mind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Scheherazade+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand-orange: #E8854A;
+    --brand-orange-soft: rgba(232, 133, 74, .08);
+    --brand-orange-border: rgba(232, 133, 74, .20);
+    --brand-orange-strong: #C56A35;
+    --brand-coral: #D4607A;
+    --brand-coral-soft: rgba(212, 96, 122, .06);
+    --brand-coral-border: rgba(212, 96, 122, .18);
+    --brand-teal: #3CB89A;
+    --brand-teal-soft: rgba(60, 184, 154, .08);
+    --brand-teal-border: rgba(60, 184, 154, .22);
+    --brand-purple: #7B6BAE;
+    --brand-purple-soft: rgba(123, 107, 174, .06);
+    --brand-purple-border: rgba(123, 107, 174, .18);
+    --brand-gold: #c8a84e;
+    --brand-gold-soft: rgba(200, 168, 78, .08);
+    --brand-gold-border: rgba(200, 168, 78, .22);
+    --brand-gradient: linear-gradient(135deg, #E8854A 0%, #D4607A 40%, #3CB89A 75%, #7B6BAE 100%);
+
+    --bg1: #f9f8f4;
+    --bg2: #f1f0eb;
+    --cream: #faf8f0;
+    --card: #ffffff;
+    --fg1: #1a1a18;
+    --fg2: #4a4a42;
+    --fg3: #8a8a80;
+    --fg4: #b0b0a4;
+    --border: #e6e5de;
+    --border-soft: #eeedea;
+    --border-strong: #d4d3cb;
+
+    --shadow-1: 0 1px 3px rgba(0,0,0,.04);
+    --shadow-2: 0 2px 8px rgba(0,0,0,.04);
+    --shadow-3: 0 4px 14px rgba(0,0,0,.06);
+    --shadow-4: 0 14px 40px rgba(0,0,0,.10);
+
+    --r-sm: 8px;
+    --r-md: 10px;
+    --r-lg: 14px;
+    --r-xl: 16px;
+    --r-full: 999px;
+
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --font-ui: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-arabic: 'Scheherazade New', Georgia, serif;
+
+    /* shorthands for readability */
+    --accent: var(--brand-orange);
+    --accent-soft: var(--brand-orange-soft);
+    --accent-border: var(--brand-orange-border);
+    --text: var(--fg1);
+    --text-muted: var(--fg3);
+    --bg: var(--bg1);
+    --bg-2: var(--card);
+    --radius: var(--r-md);
+  }
+
+  ::selection { background: var(--brand-orange-soft); color: var(--brand-orange-strong); }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ui);
+    font-weight: 400;
+    line-height: 1.65;
+    font-size: 16px;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 48px;
+    background: rgba(249, 248, 244, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 18px; font-weight: 500; letter-spacing: 0.01em;
+    color: var(--fg1); text-decoration: none;
+  }
+  .nav-logo span {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--fg3); text-decoration: none;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--fg1); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 140px 24px 100px;
+    position: relative; overflow: hidden;
+    background: var(--cream);
+  }
+  .hero-orb {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(232,133,74,0.07) 0%, rgba(212,96,122,0.04) 40%, transparent 70%);
+    animation: breathe 7s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes breathe {
+    0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.7; }
+    50% { transform: translate(-50%,-50%) scale(1.12); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hero-orb { animation: none; } }
+
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--brand-orange); margin-bottom: 24px; position: relative;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 9vw, 88px);
+    font-weight: 500; line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--fg1);
+    margin-bottom: 28px; position: relative;
+  }
+  .hero h1 em {
+    font-style: italic;
+    background: var(--brand-gradient);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 17px; color: var(--fg2); max-width: 500px;
+    line-height: 1.8; margin-bottom: 52px; position: relative;
+    font-weight: 400;
+  }
+  .hero-cta {
+    display: inline-block; padding: 14px 36px;
+    background: var(--brand-orange); color: #fff;
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    letter-spacing: 0.06em; border-radius: var(--r-full);
+    box-shadow: var(--shadow-3);
+    transition: all 0.25s var(--ease); position: relative;
+    border: none;
+  }
+  .hero-cta:hover {
+    background: var(--brand-orange-strong);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-4);
+  }
+  .scroll-hint {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--fg4); font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--brand-orange), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* SECTIONS */
+  section { padding: 96px 24px; max-width: 800px; margin: 0 auto; }
+  .section-full { max-width: 100%; padding: 96px 0; }
+  .section-inner { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--brand-teal); margin-bottom: 16px; display: block;
+    font-weight: 500;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 500; line-height: 1.12;
+    color: var(--fg1);
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-family: var(--font-display);
+    font-size: 24px; font-weight: 500;
+    color: var(--fg1);
+    margin-bottom: 10px;
+  }
+  p { color: var(--fg2); margin-bottom: 18px; font-size: 16px; line-height: 1.75; }
+  p strong { color: var(--fg1); font-weight: 500; }
+
+  /* DIVIDER */
+  .divider {
+    display: flex; align-items: center; gap: 16px;
+    max-width: 800px; margin: 0 auto 56px; padding: 0 24px;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+  .divider-gem {
+    width: 7px; height: 7px;
+    background: var(--brand-gradient);
+    transform: rotate(45deg); flex-shrink: 0;
+    border-radius: 1px;
+  }
+
+  /* BLOCKQUOTE */
+  blockquote {
+    border-left: 3px solid var(--brand-orange);
+    padding: 20px 0 20px 28px;
+    margin: 36px 0;
+    background: var(--brand-orange-soft);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  blockquote p {
+    font-family: var(--font-display);
+    font-size: 21px; font-style: italic;
+    color: var(--fg1); font-weight: 400; line-height: 1.55;
+    margin: 0;
+  }
+  blockquote cite { font-size: 13px; color: var(--fg3); margin-top: 10px; display: block; }
+
+  /* QUIZ */
+  .quiz-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 48px;
+    margin-top: 48px;
+    box-shadow: var(--shadow-3);
+  }
+  .quiz-progress-bar {
+    height: 4px; background: var(--bg2);
+    border-radius: var(--r-full);
+    margin-bottom: 40px; position: relative; overflow: hidden;
+  }
+  .quiz-progress-fill {
+    height: 100%;
+    background: var(--brand-gradient);
+    border-radius: var(--r-full);
+    transition: width 0.4s var(--ease);
+  }
+  .quiz-question {
+    font-family: var(--font-display);
+    font-size: 24px; font-weight: 500; line-height: 1.4;
+    margin-bottom: 28px; color: var(--fg1);
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+  .quiz-option {
+    padding: 14px 18px;
+    border: 1.5px solid var(--border);
+    background: var(--bg1); color: var(--fg2);
+    font-family: var(--font-ui); font-size: 14px; font-weight: 400;
+    cursor: pointer; text-align: left;
+    transition: all 0.18s var(--ease);
+    border-radius: var(--r-md);
+  }
+  .quiz-option:hover { border-color: var(--brand-orange-border); color: var(--fg1); background: var(--brand-orange-soft); }
+  .quiz-option.selected { border-color: var(--brand-orange); color: var(--fg1); background: var(--brand-orange-soft); }
+  .quiz-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 32px;
+  }
+  .quiz-counter { font-size: 12px; color: var(--fg4); letter-spacing: 0.08em; font-weight: 500; }
+  .btn {
+    padding: 11px 26px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+    cursor: pointer; transition: all 0.2s var(--ease);
+    font-family: var(--font-ui); border-radius: var(--r-full);
+    background: var(--brand-orange); color: #fff; border: none;
+    box-shadow: var(--shadow-1);
+  }
+  .btn:hover { background: var(--brand-orange-strong); transform: translateY(-1px); box-shadow: var(--shadow-2); }
+  .btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
+  .btn-ghost {
+    background: transparent; color: var(--fg3);
+    border: 1.5px solid var(--border); box-shadow: none;
+  }
+  .btn-ghost:hover { border-color: var(--border-strong); color: var(--fg1); background: var(--bg2); transform: none; box-shadow: none; }
+
+  /* RESULT */
+  .quiz-result { text-align: center; }
+  .result-score-ring {
+    width: 120px; height: 120px; border-radius: 50%;
+    border: 3px solid var(--brand-orange);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+    background: var(--brand-orange-soft);
+  }
+  .result-score-num {
+    font-family: var(--font-display);
+    font-size: 46px; font-weight: 500; color: var(--brand-orange); line-height: 1;
+  }
+  .result-score-label { font-size: 10px; letter-spacing: 0.15em; color: var(--fg3); text-transform: uppercase; font-weight: 500; }
+  .result-level {
+    font-family: var(--font-display);
+    font-size: 30px; font-weight: 500; margin-bottom: 14px;
+  }
+  .result-desc { color: var(--fg2); font-size: 15px; max-width: 440px; margin: 0 auto 24px; line-height: 1.75; }
+  .result-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 28px; }
+  .result-tag {
+    padding: 5px 14px;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--r-full);
+    font-size: 12px; color: var(--fg3); font-weight: 500;
+  }
+
+  /* PRACTICES */
+  .practices-grid { display: flex; flex-direction: column; gap: 0; margin-top: 48px; }
+  .practice-item {
+    display: grid; grid-template-columns: 60px 1fr;
+    gap: 0 28px; padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .practice-item:first-child { border-top: 1px solid var(--border); }
+  .practice-num {
+    font-family: var(--font-display);
+    font-size: 38px; font-weight: 400; color: var(--border-strong);
+    line-height: 1; padding-top: 4px;
+    transition: color 0.3s;
+  }
+  .practice-item:hover .practice-num { color: var(--brand-orange); }
+  .practice-title {
+    font-family: var(--font-display);
+    font-size: 21px; font-weight: 500; color: var(--fg1);
+    margin-bottom: 8px; line-height: 1.3;
+  }
+  .practice-body { color: var(--fg2); font-size: 14px; line-height: 1.85; }
+  .practice-tag {
+    display: inline-block; padding: 3px 12px; font-size: 11px; font-weight: 500;
+    background: var(--brand-teal-soft); border: 1px solid var(--brand-teal-border);
+    color: var(--brand-teal); border-radius: var(--r-full);
+    letter-spacing: 0.04em; margin-top: 10px;
+  }
+
+  /* SETUP CHECKLIST */
+  .setup-wrap {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 40px; margin-top: 48px;
+    box-shadow: var(--shadow-2);
+  }
+  .setup-item {
+    display: flex; align-items: flex-start; gap: 18px;
+    padding: 20px 0; border-bottom: 1px solid var(--border-soft);
+  }
+  .setup-item:last-child { border-bottom: none; }
+  .setup-check {
+    width: 24px; height: 24px; flex-shrink: 0;
+    border: 1.5px solid var(--border-strong); border-radius: 50%;
+    cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px; background: var(--bg1);
+  }
+  .setup-check:hover { border-color: var(--brand-orange); background: var(--brand-orange-soft); }
+  .setup-check.checked { background: var(--brand-teal); border-color: var(--brand-teal); }
+  .setup-check.checked::after { content: '✓'; color: #fff; font-size: 12px; font-weight: 600; }
+  .setup-content { flex: 1; }
+  .setup-title {
+    font-size: 15px; font-weight: 500; color: var(--fg1); margin-bottom: 4px;
+    transition: color 0.2s, opacity 0.2s;
+  }
+  .setup-item.done .setup-title { text-decoration: line-through; color: var(--fg3); opacity: 0.7; }
+  .setup-desc { font-size: 13px; color: var(--fg3); margin-bottom: 0; line-height: 1.65; }
+  .setup-action {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 10px; font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--brand-orange); text-decoration: none;
+    border-bottom: 1px solid var(--brand-orange-border); transition: border-color 0.2s;
+  }
+  .setup-action:hover { border-bottom-color: var(--brand-orange); }
+
+  /* 14-DAY GRID */
+  .grid-wrap {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 40px; margin-top: 48px; overflow-x: auto;
+    box-shadow: var(--shadow-2);
+  }
+  .grid-header-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 24px; flex-wrap: wrap; gap: 16px;
+  }
+  .grid-title {
+    font-family: var(--font-display);
+    font-size: 22px; font-weight: 500; color: var(--fg1);
+  }
+  .streak-badge {
+    font-size: 12px; font-weight: 500; color: var(--brand-orange);
+    border: 1.5px solid var(--brand-orange-border);
+    background: var(--brand-orange-soft);
+    padding: 5px 14px; border-radius: var(--r-full);
+  }
+  .checklist-table { border-collapse: collapse; width: 100%; min-width: 760px; }
+  .checklist-table th, .checklist-table td {
+    border: 1px solid var(--border-soft); text-align: center;
+    padding: 0; height: 44px; width: 38px;
+  }
+  .checklist-table th {
+    font-size: 11px; font-weight: 500; color: var(--fg3);
+    padding: 8px 4px; background: var(--bg2);
+  }
+  .checklist-table th.day-col { font-size: 10px; }
+  .practice-label-cell {
+    text-align: left !important; padding: 10px 16px !important;
+    font-size: 13px; font-weight: 400; color: var(--fg1);
+    width: auto; min-width: 220px;
+    position: sticky; left: 0; background: var(--card);
+  }
+  .practice-label-cell .practice-emoji { margin-right: 8px; }
+  .day-cell { cursor: pointer; transition: background 0.15s; }
+  .day-cell:hover { background: var(--brand-orange-soft); }
+  .day-cell.checked { background: rgba(60,184,154,0.12); }
+  .day-cell.checked::after { content: '✓'; color: var(--brand-teal); font-size: 14px; font-weight: 600; }
+  .day-cell.today { box-shadow: inset 0 0 0 2px var(--brand-orange); }
+  .grid-controls { display: flex; justify-content: flex-end; margin-top: 20px; }
+
+  /* CLOSING */
+  .closing {
+    text-align: center; padding: 120px 24px;
+    position: relative; overflow: hidden;
+    background: var(--cream);
+  }
+  .closing-orb {
+    position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(60,184,154,0.07) 0%, rgba(123,107,174,0.04) 50%, transparent 70%);
+    pointer-events: none;
+  }
+  .closing h2 { margin-bottom: 16px; }
+  .arabic-close {
+    font-family: var(--font-arabic);
+    font-size: 26px; color: var(--brand-orange);
+    margin-top: 56px; opacity: 0.85;
+    direction: rtl;
+  }
+  .arabic-sub { font-size: 12px; color: var(--fg3); margin-top: 8px; letter-spacing: 0.06em; font-style: italic; }
+
+  /* GRADIENT BANNER */
+  .gradient-banner {
+    background: var(--brand-gradient);
+    border-radius: var(--r-xl);
+    padding: 32px 40px;
+    margin-top: 40px;
+    color: #fff;
+    font-size: 18px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    box-shadow: var(--shadow-4);
+  }
+
+  /* FADE IN */
+  .fade-in {
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    section { padding: 72px 20px; }
+    .quiz-card, .setup-wrap, .grid-wrap { padding: 24px 18px; }
+    .practice-item { grid-template-columns: 44px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#top">The <span>Reset</span></a>
+  <ul class="nav-links">
+    <li><a href="#why">Why</a></li>
+    <li><a href="#quiz">Assess</a></li>
+    <li><a href="#practices">The Work</a></li>
+    <li><a href="#setup">Setup</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-orb"></div>
+  <p class="hero-eyebrow">A guide to reclaiming your attention</p>
+  <h1>You are not <em>lazy.</em><br>You are overwhelmed.</h1>
+  <p class="hero-sub">Modern life has flooded your brain with more stimulation than it was ever designed to handle. Here is a way back.</p>
+  <a href="#why" class="hero-cta">Begin</a>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section id="why" class="fade-in">
+  <span class="eyebrow">Understanding the problem</span>
+  <h2>Your brain has been rewired</h2>
+  <p>Every scroll, every notification, every quick video — each one releases a small hit of dopamine. Over time, your brain adapts by raising the threshold for what feels rewarding. <strong>This is not a character flaw. It is a biological response to an unnaturally stimulating environment.</strong></p>
+  <p>The result: normal activities — focused work, reading, exercise, prayer, stillness — feel painfully dull. Your brain has been conditioned to expect a hit every 15 seconds, and when it doesn't get one, it screams.</p>
+  
+  <blockquote>
+    <p>The soul that has grown accustomed to noise cannot hear the quiet call of its own purpose.</p>
+    <cite>— On the necessity of stillness</cite>
+  </blockquote>
+
+  <p>This is not about willpower. You cannot outwork a dysregulated nervous system. The solution is a <strong>reset</strong> — systematically lowering your baseline so that life itself becomes rewarding again.</p>
+</section>
+
+<!-- QUIZ -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section id="quiz" class="fade-in">
+  <span class="eyebrow">Self-assessment</span>
+  <h2>How overstimulated are you?</h2>
+  <p>Answer honestly. No one is watching. These questions reveal where your nervous system currently sits.</p>
+
+  <div class="quiz-card">
+    <div id="quiz-container">
+      <div class="quiz-progress-bar">
+        <div class="quiz-progress-fill" id="quiz-progress" style="width:0%"></div>
+      </div>
+      <p class="quiz-question" id="quiz-question"></p>
+      <div class="quiz-options" id="quiz-options"></div>
+      <div class="quiz-nav">
+        <span class="quiz-counter" id="quiz-counter"></span>
+        <button class="btn" id="quiz-next" disabled>Next</button>
+      </div>
+    </div>
+    <div id="quiz-result" style="display:none" class="quiz-result"></div>
+  </div>
+</section>
+
+<!-- PRACTICES -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section id="practices" class="fade-in">
+  <span class="eyebrow">The five practices</span>
+  <h2>What actually works</h2>
+  <p>These are not productivity hacks. They are a systematic unwinding of a conditioned brain. Each one builds on the last.</p>
+
+  <div class="practices-grid">
+    <div class="practice-item">
+      <div class="practice-num">01</div>
+      <div>
+        <div class="practice-title">The Morning Silence</div>
+        <div class="practice-body">Spend the first 30 minutes after waking doing nothing stimulating. No phone, no music, no content. Sit. Walk. Breathe. This is not meditation in the formal sense — it is simply refusing to let the first input of your day be someone else's agenda. Your brain will protest. Let it. Start with 10 minutes if you must.</div>
+        <span class="practice-tag">Daily · Morning</span>
+      </div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">02</div>
+      <div>
+        <div class="practice-title">The One-Day Fast</div>
+        <div class="practice-body">Once a week, remove all high-dopamine inputs: no social media, no YouTube, no video games, no algorithmically-curated content. Replace with books, walks, real conversations, journaling, manual tasks. Your brain will throw everything at you to make you stop. That discomfort is the proof it is working.</div>
+        <span class="practice-tag">Weekly · Full Day</span>
+      </div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">03</div>
+      <div>
+        <div class="practice-title">Boredom First</div>
+        <div class="practice-body">Before any reward — checking your phone, a snack, opening social media — you must first spend 10 minutes doing something boring. Stretch. Tidy your space. Sit. This retrains the deep pattern: reward follows effort, not the other way around. It reverses the conditioning at the root.</div>
+        <span class="practice-tag">Daily · Ongoing</span>
+      </div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">04</div>
+      <div>
+        <div class="practice-title">Kill the Interruptions</div>
+        <div class="practice-body">Turn off every notification except direct calls. No badges. No red dots. No banners. Every ping is a tiny hijack of your attention, and attention is the one thing that cannot be recovered once spent. If you want to check something, make it an intentional act, not a reflexive one.</div>
+        <span class="practice-tag">One-time Setup</span>
+      </div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">05</div>
+      <div>
+        <div class="practice-title">Exist in the Gap</div>
+        <div class="practice-body">Waiting in a queue? Just wait. Eating? Just eat. Walking? Just walk. Stop filling every empty moment with stimulation. These gaps are not wasted time — they are when your brain consolidates, when insight surfaces, when you remember what you actually think. Protect them.</div>
+        <span class="practice-tag">Daily · Ongoing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SETUP -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section id="setup" class="fade-in">
+  <span class="eyebrow">Step one — set up once</span>
+  <h2>Prepare your environment</h2>
+  <p>Before you can rely on willpower, remove the friction. These four actions take fifteen minutes total and do most of the work for you.</p>
+
+  <div class="setup-wrap" id="setup-wrap"></div>
+</section>
+
+<!-- 14-DAY CHECKLIST -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section id="checklist" class="fade-in">
+  <span class="eyebrow">Step two — show up daily</span>
+  <h2>Your 14-day reset</h2>
+  <p>Tap a box each day you complete a practice. Don't aim for perfection — aim for consistency. Missing a day is fine. Missing two in a row is the thing to avoid.</p>
+
+  <div class="grid-wrap">
+    <div class="grid-header-row">
+      <div class="grid-title">Daily practices</div>
+      <div class="streak-badge" id="streak-badge">0 of 70 checked</div>
+    </div>
+    <table class="checklist-table" id="checklist-table"></table>
+    <div class="grid-controls">
+      <button class="btn btn-ghost" id="reset-checklist">Reset progress</button>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<div class="closing fade-in">
+  <div class="closing-orb"></div>
+  <span class="eyebrow">A final word</span>
+  <h2>The first week is hard.<br>That is the point.</h2>
+  <p style="max-width:500px;margin:0 auto;color:var(--text-muted);">Around day 10, something shifts. Simple things become enjoyable again. Work doesn't feel like pulling teeth. You can sit with your own thoughts without needing to escape them. That is not a small thing — that is your life returning to you.</p>
+  <p class="arabic-close">وَاصْبِرْ وَمَا صَبْرُكَ إِلَّا بِاللَّهِ</p>
+  <p class="arabic-sub">Be patient — and your patience is only through Allah.</p>
+</div>
+
+
+<script>
+// ─── SCROLL FADE ───────────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ─── QUIZ ──────────────────────────────────────────────────────
+const questions = [
+  { q: "Do you reach for your phone within the first few minutes of waking up?", opts: ["Never","Sometimes","Most days","Every single day"], scores: [0,1,2,3] },
+  { q: "Can you sit in silence for 10 minutes without feeling restless or anxious?", opts: ["Easily","With some effort","It's quite uncomfortable","Impossible — I always reach for something"], scores: [0,1,2,3] },
+  { q: "Do simple tasks — reading, working, even eating — feel tediously slow?", opts: ["Rarely","Occasionally","Often","Almost always"], scores: [0,1,2,3] },
+  { q: "Do you need background content (videos, music, podcasts) to focus or relax?", opts: ["No, I prefer silence","Sometimes","Usually yes","Always — silence feels unbearable"], scores: [0,1,2,3] },
+  { q: "How long can you typically focus on one task without switching?", opts: ["60+ minutes","30–60 minutes","10–30 minutes","Less than 10 minutes"], scores: [0,1,2,3] },
+  { q: "When you feel bored or uncomfortable, what do you do first?", opts: ["Sit with it","Do something physical","Check my phone","Open an app without thinking"], scores: [0,1,2,3] },
+];
+
+const levels = [
+  { name: "Grounded", desc: "Your nervous system is relatively balanced. You can tolerate discomfort and focus without constant stimulation. A few small adjustments and you'll be operating at a high level.", tags: ["Good baseline","Small refinements needed"], color: "var(--sage)" },
+  { name: "Fraying", desc: "You've built some habits around stimulation but can still tolerate discomfort. A focused reset week will make a significant difference to your clarity and focus.", tags: ["Mild overstimulation","1-week reset recommended"], color: "var(--gold)" },
+  { name: "Overstimulated", desc: "Your brain is running hot. Starting new habits feels like torture, focus is fragmented, and silence feels unsafe. A reset is not optional — it's urgent. The good news: two weeks can change everything.", tags: ["Significant rewiring needed","Start with Morning Silence"], color: "var(--danger)" },
+  { name: "Overloaded", desc: "You're deep in it. Your baseline for stimulation is so high that normal life feels impossibly dull. This is not who you are — it's the result of years of conditioning. The path back exists. Start with one thing: the morning silence.", tags: ["Full reset required","Start today, not tomorrow"], color: "var(--danger)" },
+];
+
+let currentQ = 0, answers = [], selectedIdx = null;
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  document.getElementById('quiz-question').textContent = q.q;
+  document.getElementById('quiz-counter').textContent = `${currentQ + 1} of ${questions.length}`;
+  document.getElementById('quiz-progress').style.width = `${(currentQ / questions.length) * 100}%`;
+  const opts = document.getElementById('quiz-options');
+  opts.innerHTML = '';
+  selectedIdx = null;
+  document.getElementById('quiz-next').disabled = true;
+  q.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option';
+    btn.textContent = opt;
+    btn.onclick = () => {
+      opts.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedIdx = i;
+      document.getElementById('quiz-next').disabled = false;
+    };
+    opts.appendChild(btn);
+  });
+}
+
+function showResult() {
+  document.getElementById('quiz-container').style.display = 'none';
+  const total = answers.reduce((a, b) => a + b, 0);
+  const max = questions.length * 3;
+  const pct = Math.round((total / max) * 100);
+  const lvlIdx = pct < 25 ? 0 : pct < 50 ? 1 : pct < 75 ? 2 : 3;
+  const lvl = levels[lvlIdx];
+  const res = document.getElementById('quiz-result');
+  res.style.display = 'block';
+  res.innerHTML = `
+    <div class="result-score-ring" style="border-color:${lvl.color}">
+      <div class="result-score-num" style="color:${lvl.color}">${pct}</div>
+      <div class="result-score-label">/ 100</div>
+    </div>
+    <div class="result-level">${lvl.name}</div>
+    <div class="result-desc">${lvl.desc}</div>
+    <div class="result-tags">${lvl.tags.map(t => `<span class="result-tag">${t}</span>`).join('')}</div>
+    <button class="btn" onclick="location.href='#practices'">See the practices →</button>
+    <br><br>
+    <button class="btn btn-ghost" onclick="retakeQuiz()">Retake quiz</button>
+  `;
+}
+
+function retakeQuiz() {
+  currentQ = 0; answers = [];
+  document.getElementById('quiz-result').style.display = 'none';
+  document.getElementById('quiz-container').style.display = 'block';
+  renderQuestion();
+}
+
+document.getElementById('quiz-next').onclick = () => {
+  if (selectedIdx === null) return;
+  answers.push(questions[currentQ].scores[selectedIdx]);
+  currentQ++;
+  if (currentQ >= questions.length) { showResult(); }
+  else renderQuestion();
+};
+
+renderQuestion();
+
+// ─── SETUP CHECKLIST ──────────────────────────────────────────
+function gcalLink() {
+  // Find next occurrence of given weekday (0=Sun..6=Sat), default Sunday
+  const now = new Date();
+  const target = 0; // Sunday
+  let d = new Date(now);
+  d.setDate(now.getDate() + ((target + 7 - now.getDay()) % 7 || 7));
+  const fmt = (date) => date.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+  const start = new Date(d); start.setHours(0,0,0,0);
+  const end = new Date(d); end.setHours(23,59,59,0);
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: 'Dopamine Fast Day — no socials, no YouTube',
+    dates: `${fmt(start)}/${fmt(end)}`,
+    details: 'A full day with no social media, no YouTube, no video games. Books, walks, journaling, real conversations only.',
+  });
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+const setupItems = [
+  {
+    id: 'dnd',
+    title: 'Schedule phone Do Not Disturb for the morning',
+    desc: 'Set a recurring Do Not Disturb (or Focus mode) from when you wake up until 30–60 minutes later. This protects your morning silence automatically — no willpower required.',
+    action: null,
+  },
+  {
+    id: 'fastday',
+    title: 'Block one day this week as your fast day',
+    desc: 'Pick a day with the lightest schedule. Add it to your calendar now so it\'s protected before the week fills up.',
+    action: { label: 'Add to Google Calendar', href: gcalLink() },
+  },
+  {
+    id: 'notifications',
+    title: 'Turn off non-essential notifications',
+    desc: 'Go into your phone settings and disable badges, banners, and sounds for every app except calls and messages. This alone removes most of the daily pull.',
+    action: null,
+  },
+  {
+    id: 'accountability',
+    title: 'Tell someone what you\'re doing',
+    desc: 'Send a message to a friend, spouse, or family member. Let them know you\'re doing a 14-day reset — accountability makes it real.',
+    action: null,
+  },
+];
+
+function loadSetup() {
+  const saved = JSON.parse(localStorage.getItem('reset-setup') || '{}');
+  const wrap = document.getElementById('setup-wrap');
+  wrap.innerHTML = '';
+  setupItems.forEach(item => {
+    const done = !!saved[item.id];
+    const el = document.createElement('div');
+    el.className = 'setup-item' + (done ? ' done' : '');
+    el.innerHTML = `
+      <div class="setup-check ${done ? 'checked' : ''}" data-id="${item.id}"></div>
+      <div class="setup-content">
+        <div class="setup-title">${item.title}</div>
+        <p class="setup-desc">${item.desc}</p>
+        ${item.action ? `<a class="setup-action" href="${item.action.href}" target="_blank" rel="noopener">${item.action.label} →</a>` : ''}
+      </div>
+    `;
+    wrap.appendChild(el);
+  });
+  wrap.querySelectorAll('.setup-check').forEach(box => {
+    box.onclick = () => {
+      const id = box.dataset.id;
+      const data = JSON.parse(localStorage.getItem('reset-setup') || '{}');
+      data[id] = !data[id];
+      localStorage.setItem('reset-setup', JSON.stringify(data));
+      loadSetup();
+    };
+  });
+}
+loadSetup();
+
+// ─── 14-DAY CHECKLIST ─────────────────────────────────────────
+const PRACTICES = [
+  { id: 'silence', emoji: '🌅', label: 'Morning silence (30 min, no inputs)' },
+  { id: 'boredom', emoji: '⏳', label: 'Boredom before reward' },
+  { id: 'notifications', emoji: '🔕', label: 'Notifications stayed off' },
+  { id: 'gap', emoji: '⏸', label: 'Existed in the gap (no filler)' },
+  { id: 'scrolling', emoji: '📵', label: 'No mindless scrolling' },
+];
+
+function loadChecklist() {
+  const saved = JSON.parse(localStorage.getItem('reset-checklist') || '{}');
+  const table = document.getElementById('checklist-table');
+  table.innerHTML = '';
+
+  // header row
+  const thead = document.createElement('tr');
+  thead.innerHTML = '<th class="practice-label-cell">Practice</th>' +
+    Array.from({length: 14}, (_, i) => `<th class="day-col">Day<br>${i+1}</th>`).join('');
+  table.appendChild(thead);
+
+  PRACTICES.forEach(practice => {
+    const row = document.createElement('tr');
+    row.innerHTML = `<td class="practice-label-cell"><span class="practice-emoji">${practice.emoji}</span>${practice.label}</td>`;
+    for (let day = 1; day <= 14; day++) {
+      const key = `${practice.id}-${day}`;
+      const checked = !!saved[key];
+      const td = document.createElement('td');
+      td.className = 'day-cell' + (checked ? ' checked' : '');
+      td.dataset.key = key;
+      row.appendChild(td);
+    }
+    table.appendChild(row);
+  });
+
+  table.querySelectorAll('.day-cell').forEach(cell => {
+    cell.onclick = () => {
+      const data = JSON.parse(localStorage.getItem('reset-checklist') || '{}');
+      const key = cell.dataset.key;
+      data[key] = !data[key];
+      localStorage.setItem('reset-checklist', JSON.stringify(data));
+      cell.classList.toggle('checked');
+      updateStreakBadge();
+    };
+  });
+
+  updateStreakBadge();
+}
+
+function updateStreakBadge() {
+  const data = JSON.parse(localStorage.getItem('reset-checklist') || '{}');
+  const total = Object.values(data).filter(Boolean).length;
+  document.getElementById('streak-badge').textContent = `${total} of 70 checked`;
+}
+
+document.getElementById('reset-checklist').onclick = () => {
+  if (confirm('Clear all checklist progress? This cannot be undone.')) {
+    localStorage.removeItem('reset-checklist');
+    loadChecklist();
+  }
+};
+
+loadChecklist();
+</script>
+</body>
+</html>
