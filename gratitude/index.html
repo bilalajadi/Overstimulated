@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gratitude — Fatih Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Josefin+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Scheherazade+New:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){var t=localStorage.getItem('fatih-lib-theme');document.documentElement.setAttribute('data-theme',['light','dark','fatih'].includes(t)?t:'light');})();</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── LIGHT (default) ── */
+:root, [data-theme="light"] {
+  --bg: #f9f8f4; --bg-2: #ffffff; --bg-3: #f1f0eb; --cream: #faf8f0;
+  --fg1: #1a1a18; --fg2: #4a4a42; --fg3: #8a8a80; --fg4: #b0b0a4;
+  --accent: #E8854A; --accent-soft: rgba(232,133,74,.08); --accent-border: rgba(232,133,74,.20); --accent-strong: #C56A35;
+  --teal: #3CB89A; --teal-soft: rgba(60,184,154,.08); --teal-border: rgba(60,184,154,.22);
+  --gold: #c8a84e; --gold-soft: rgba(200,168,78,.08); --gold-border: rgba(200,168,78,.22);
+  --gradient: linear-gradient(135deg,#E8854A 0%,#D4607A 40%,#3CB89A 75%,#7B6BAE 100%);
+  --border: #e6e5de; --border-soft: #eeedea; --border-strong: #d4d3cb;
+  --shadow-1: 0 1px 3px rgba(0,0,0,.04); --shadow-2: 0 2px 8px rgba(0,0,0,.04);
+  --shadow-3: 0 4px 14px rgba(0,0,0,.06); --shadow-4: 0 14px 40px rgba(0,0,0,.10);
+  --r-sm:8px; --r-md:10px; --r-lg:14px; --r-xl:16px; --r-full:999px;
+  --ease: cubic-bezier(0.16,1,0.3,1);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-ui: 'DM Sans', system-ui, sans-serif;
+  --font-arabic: 'Scheherazade New', Georgia, serif;
+  --nav-bg: rgba(249,248,244,0.92);
+  --eyebrow: var(--teal);
+  --text: var(--fg1); --text-muted: var(--fg3);
+}
+
+/* ── DARK ── */
+[data-theme="dark"] {
+  --bg:#0E0F0D; --bg-2:#161713; --bg-3:#1E2019; --cream:#0E0F0D;
+  --fg1:#F0EDE6; --fg2:#b8b4ad; --fg3:#8A8A7E; --fg4:#5a5a52;
+  --accent:#C9A84C; --accent-soft:rgba(201,168,76,.08); --accent-border:rgba(201,168,76,.22); --accent-strong:#a8863a;
+  --teal:#7A8C72; --teal-soft:rgba(122,140,114,.08); --teal-border:rgba(122,140,114,.22);
+  --gold:#C9A84C; --gold-soft:rgba(201,168,76,.08); --gold-border:rgba(201,168,76,.22);
+  --gradient:linear-gradient(135deg,#C9A84C 0%,#a8863a 100%);
+  --border:#2A2B27; --border-soft:#222320; --border-strong:#3a3b37;
+  --shadow-1:0 1px 3px rgba(0,0,0,.3); --shadow-2:0 2px 8px rgba(0,0,0,.4);
+  --shadow-3:0 4px 14px rgba(0,0,0,.5); --shadow-4:0 14px 40px rgba(0,0,0,.6);
+  --r-sm:4px; --r-md:6px; --r-lg:8px; --r-xl:10px; --r-full:999px;
+  --font-display:'Cormorant Garamond',Georgia,serif; --font-ui:'Inter',system-ui,sans-serif;
+  --nav-bg:rgba(14,15,13,0.95); --eyebrow:#7A8C72;
+  --text:var(--fg1); --text-muted:var(--fg3);
+}
+
+/* ── FATIH ── */
+[data-theme="fatih"] {
+  --bg:#0B1120; --bg-2:#162035; --bg-3:#1C2840; --cream:#0B1120;
+  --fg1:#EDF1F5; --fg2:rgba(237,241,245,.75); --fg3:rgba(237,241,245,.52); --fg4:rgba(237,241,245,.28);
+  --accent:#3BBFCC; --accent-soft:rgba(59,191,204,.10); --accent-border:rgba(59,191,204,.20); --accent-strong:#2a9aa8;
+  --teal:#2ABFAA; --teal-soft:rgba(42,191,170,.08); --teal-border:rgba(42,191,170,.22);
+  --gold:#C9973A; --gold-soft:rgba(201,151,58,.10); --gold-border:rgba(201,151,58,.22);
+  --gradient:linear-gradient(135deg,#3BBFCC 0%,#2ABFAA 100%);
+  --border:rgba(59,191,204,.14); --border-soft:rgba(237,241,245,.07); --border-strong:rgba(59,191,204,.25);
+  --shadow-1:0 1px 3px rgba(0,0,0,.3); --shadow-2:0 2px 12px rgba(0,0,0,.35);
+  --shadow-3:0 4px 24px rgba(0,0,0,.5); --shadow-4:0 14px 40px rgba(0,0,0,.65);
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:24px; --r-full:999px;
+  --font-display:'Josefin Sans',sans-serif; --font-ui:'DM Sans',system-ui,sans-serif;
+  --nav-bg:rgba(11,17,32,0.92); --eyebrow:var(--accent);
+  --text:var(--fg1); --text-muted:var(--fg3);
+}
+
+::selection { background: var(--accent-soft); color: var(--accent-strong); }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg); color: var(--fg1);
+  font-family: var(--font-ui); font-size: 16px;
+  line-height: 1.7; overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background .3s ease, color .3s ease;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 48px; height: 60px;
+  background: var(--nav-bg); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-soft);
+  transition: background .3s ease;
+}
+.nav-back {
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none; color: var(--fg3);
+  font-size: 13px; font-weight: 500; transition: color .2s;
+  flex-shrink: 0;
+}
+.nav-back:hover { color: var(--fg1); }
+.nav-back svg { width:14px; height:14px; stroke-width:2; }
+.nav-back-logo { width:24px; height:24px; border-radius:5px; overflow:hidden; flex-shrink:0; }
+.nav-back-logo img { width:100%; height:100%; object-fit:cover; display:block; }
+.nav-back-logo .logo-light { display:none; }
+[data-theme="light"] .nav-back-logo .logo-dark { display:none; }
+[data-theme="light"] .nav-back-logo .logo-light { display:block; }
+
+.nav-title {
+  position:absolute; left:50%; transform:translateX(-50%);
+  font-family: var(--font-display); font-size:15px; font-weight:500;
+  color:var(--fg1); white-space:nowrap;
+}
+[data-theme="fatih"] .nav-title { font-weight:600; letter-spacing:.06em; font-size:14px; }
+[data-theme="dark"] .nav-title { font-weight:300; letter-spacing:.08em; }
+
+.nav-right { display:flex; align-items:center; gap:12px; flex-shrink:0; }
+
+/* Theme toggle */
+.theme-toggle {
+  display:flex; gap:2px;
+  background:var(--bg-2); border:1px solid var(--border-soft);
+  border-radius:var(--r-full); padding:3px;
+}
+.theme-toggle button {
+  background:transparent; border:none; cursor:pointer;
+  padding:5px 10px; border-radius:var(--r-full);
+  font-family:var(--font-ui); font-size:11px; font-weight:500;
+  letter-spacing:.06em; text-transform:uppercase;
+  color:var(--fg3); transition:background .18s ease, color .18s ease;
+  white-space:nowrap;
+}
+.theme-toggle button.active { background:var(--accent); color:var(--bg); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 70vh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; padding:120px 24px 80px;
+  position:relative; overflow:hidden;
+  background:var(--cream);
+}
+.hero-orb {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:600px; height:600px; border-radius:50%; pointer-events:none; opacity:.6;
+}
+[data-theme="light"] .hero-orb { background:radial-gradient(ellipse at center,rgba(200,168,78,.10) 0%,rgba(60,184,154,.05) 50%,transparent 70%); }
+[data-theme="dark"] .hero-orb { background:radial-gradient(ellipse at center,rgba(201,168,76,.06) 0%,transparent 65%); }
+[data-theme="fatih"] .hero-orb { background:radial-gradient(ellipse at center,rgba(201,151,58,.08) 0%,rgba(59,191,204,.04) 50%,transparent 70%); }
+
+.hero-meta {
+  font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--fg3); margin-bottom:16px; font-weight:500; position:relative;
+}
+.hero-eyebrow {
+  font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--eyebrow); margin-bottom:20px; font-weight:500; position:relative;
+}
+.hero h1 {
+  font-family:var(--font-display);
+  font-size:clamp(52px,10vw,96px);
+  font-weight:500; line-height:1.05; letter-spacing:-.02em;
+  color:var(--fg1); margin-bottom:24px; position:relative;
+}
+[data-theme="dark"] .hero h1 { font-weight:300; }
+[data-theme="fatih"] .hero h1 { font-weight:600; letter-spacing:-.01em; }
+
+.hero-sub {
+  font-size:17px; color:var(--fg2); max-width:520px;
+  line-height:1.8; position:relative;
+}
+
+/* ── SECTIONS ── */
+section { padding:88px 24px; max-width:760px; margin:0 auto; }
+
+.divider {
+  display:flex; align-items:center; gap:16px;
+  max-width:760px; margin:0 auto 0; padding:0 24px;
+}
+.divider-line { flex:1; height:1px; background:var(--border); }
+.divider-gem {
+  width:7px; height:7px; transform:rotate(45deg); flex-shrink:0;
+  background:var(--gradient); border-radius:1px;
+}
+
+.eyebrow {
+  font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--eyebrow); margin-bottom:14px; display:block; font-weight:500;
+}
+h2 {
+  font-family:var(--font-display);
+  font-size:clamp(30px,4.5vw,48px);
+  font-weight:500; line-height:1.12; color:var(--fg1); margin-bottom:20px;
+}
+[data-theme="dark"] h2 { font-weight:300; }
+[data-theme="fatih"] h2 { font-weight:600; }
+p { color:var(--fg2); margin-bottom:18px; font-size:16px; line-height:1.8; }
+p strong { color:var(--fg1); font-weight:500; }
+[data-theme="dark"] p strong { font-weight:400; }
+
+blockquote {
+  border-left:3px solid var(--accent);
+  padding:18px 0 18px 28px; margin:32px 0;
+  background:var(--accent-soft);
+  border-radius:0 var(--r-md) var(--r-md) 0;
+}
+blockquote p {
+  font-family:var(--font-display); font-size:20px; font-style:italic;
+  color:var(--fg1); font-weight:400; line-height:1.55; margin:0;
+}
+blockquote cite { font-size:12px; color:var(--fg3); margin-top:10px; display:block; font-style:normal; letter-spacing:.04em; }
+
+/* ── LESSONS (numbered list) ── */
+.lessons { margin-top:48px; }
+.lesson-item {
+  display:grid; grid-template-columns:52px 1fr;
+  gap:0 24px; padding:32px 0;
+  border-bottom:1px solid var(--border);
+}
+.lesson-item:first-child { border-top:1px solid var(--border); }
+.lesson-num {
+  font-family:var(--font-display); font-size:36px; font-weight:400;
+  color:var(--border-strong); line-height:1; padding-top:4px;
+  transition:color .3s;
+}
+[data-theme="dark"] .lesson-num { color:var(--border); }
+.lesson-item:hover .lesson-num { color:var(--accent); }
+.lesson-title {
+  font-family:var(--font-display); font-size:21px; font-weight:500;
+  color:var(--fg1); margin-bottom:10px; line-height:1.3;
+}
+[data-theme="dark"] .lesson-title { font-weight:400; }
+.lesson-body { color:var(--fg2); font-size:15px; line-height:1.85; }
+.lesson-tag {
+  display:inline-block; padding:3px 12px; font-size:11px; font-weight:500;
+  background:var(--teal-soft); border:1px solid var(--teal-border); color:var(--teal);
+  border-radius:var(--r-full); letter-spacing:.04em; margin-top:12px;
+}
+
+/* ── NAMES OF ALLAH ── */
+.names-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:16px; margin-top:40px;
+}
+.name-card {
+  background:var(--bg-2); border:1px solid var(--border-soft);
+  border-radius:var(--r-lg); padding:28px 24px;
+  box-shadow:var(--shadow-2);
+  transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.name-card:hover { transform:translateY(-2px); border-color:var(--accent-border); box-shadow:var(--shadow-3); }
+.name-arabic {
+  font-family:var(--font-arabic); font-size:28px; color:var(--accent);
+  direction:rtl; margin-bottom:8px; line-height:1.4;
+}
+[data-theme="fatih"] .name-arabic { color:var(--gold); }
+.name-transliteration {
+  font-family:var(--font-display); font-size:17px; font-weight:500;
+  color:var(--fg1); margin-bottom:6px; font-style:italic;
+}
+.name-meaning {
+  font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:14px;
+}
+.name-body { font-size:14px; color:var(--fg2); line-height:1.75; }
+
+/* ── ACTIONS (checklist) ── */
+.actions-wrap {
+  background:var(--bg-2); border:1px solid var(--border);
+  border-radius:var(--r-xl); padding:40px; margin-top:48px;
+  box-shadow:var(--shadow-2);
+}
+.actions-wrap h3 {
+  font-family:var(--font-display); font-size:22px; font-weight:500;
+  color:var(--fg1); margin-bottom:28px;
+}
+[data-theme="dark"] .actions-wrap h3 { font-weight:300; }
+.action-item {
+  display:flex; align-items:flex-start; gap:16px;
+  padding:18px 0; border-bottom:1px solid var(--border-soft);
+}
+.action-item:last-child { border-bottom:none; padding-bottom:0; }
+.action-check {
+  width:22px; height:22px; flex-shrink:0;
+  border:1.5px solid var(--border-strong); border-radius:50%;
+  cursor:pointer; transition:all .2s; margin-top:2px;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--bg);
+}
+.action-check:hover { border-color:var(--accent); background:var(--accent-soft); }
+.action-check.checked { background:var(--teal); border-color:var(--teal); }
+.action-check.checked::after { content:'✓'; color:#fff; font-size:12px; font-weight:600; }
+.action-content { flex:1; }
+.action-title {
+  font-size:15px; font-weight:500; color:var(--fg1); margin-bottom:5px;
+  transition:opacity .2s;
+}
+.action-item.done .action-title { text-decoration:line-through; opacity:.5; }
+.action-desc { font-size:13px; color:var(--fg3); line-height:1.65; }
+
+/* ── CLOSING ── */
+.closing {
+  text-align:center; padding:100px 24px;
+  position:relative; overflow:hidden;
+  background:var(--cream);
+}
+.closing-orb {
+  position:absolute; bottom:-80px; left:50%; transform:translateX(-50%);
+  width:500px; height:500px; border-radius:50%; pointer-events:none;
+}
+[data-theme="light"] .closing-orb { background:radial-gradient(ellipse at center,rgba(60,184,154,.07) 0%,transparent 65%); }
+[data-theme="dark"] .closing-orb { background:radial-gradient(ellipse at center,rgba(201,168,76,.05) 0%,transparent 65%); }
+[data-theme="fatih"] .closing-orb { background:radial-gradient(ellipse at center,rgba(59,191,204,.06) 0%,transparent 65%); }
+.closing h2 { margin-bottom:16px; }
+.arabic-close {
+  font-family:var(--font-arabic); font-size:24px; color:var(--accent);
+  margin-top:48px; direction:rtl; line-height:1.8; opacity:.85;
+}
+.arabic-sub { font-size:13px; color:var(--fg3); margin-top:10px; font-style:italic; line-height:1.7; }
+
+/* ── FADE IN ── */
+.fade-in { opacity:0; transform:translateY(14px); transition:opacity .55s ease,transform .55s ease; }
+.fade-in.visible { opacity:1; transform:none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:640px) {
+  nav { padding:0 16px; }
+  .nav-title { display:none; }
+  .hero { padding:100px 20px 60px; }
+  section { padding:64px 20px; }
+  .divider { padding:0 20px; }
+  .names-grid { grid-template-columns:1fr; }
+  .lesson-item { grid-template-columns:40px 1fr; gap:0 16px; }
+  .actions-wrap { padding:24px 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-back" href="../">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="nav-back-logo">
+      <img class="logo-dark" src="../assets/logo-app-icon.png" alt="Fatih">
+      <img class="logo-light" src="../assets/logo-concept.png" alt="Fatih">
+    </div>
+    Library
+  </a>
+  <div class="nav-title">Gratitude</div>
+  <div class="nav-right">
+    <div class="theme-toggle">
+      <button data-theme-btn="light">Light</button>
+      <button data-theme-btn="dark">Dark</button>
+      <button data-theme-btn="fatih">Fatih</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-orb"></div>
+  <p class="hero-meta">11 June 2025 · Faith &amp; Islam</p>
+  <p class="hero-eyebrow">A reminder</p>
+  <h1>Gratitude</h1>
+  <p class="hero-sub">On recognising what you have been given, taking it seriously, and calling on the One who gave it.</p>
+</div>
+
+<!-- SECTION 1 -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section class="fade-in">
+  <span class="eyebrow">The first truth</span>
+  <h2>The result is not yours to claim</h2>
+  <p>You put in the effort. You showed up, you worked, you tried. But the actual result — the opening, the timing, the outcome — that was never in your hands.</p>
+  <p>Allah opens doors that no amount of skill or strategy can fully explain. And He closes them just as quietly. The months you worked hardest were not always your best months. The times things opened were not always when you did the most. <strong>That gap — between effort and result — is where Allah is.</strong></p>
+  <p>Recognise this sincerely, not just as something you say. The effort is your obligation. The result belongs entirely to Him.</p>
+
+  <blockquote>
+    <p>And whatever blessing you have — it is from Allah.</p>
+    <cite>— Surah An-Nahl, 16:53</cite>
+  </blockquote>
+
+  <p>This is not passivity. Islam is not simply have good faith and hope for the best. Put your full effort in — that is your side of the covenant. But then release the outcome with genuine conviction that it was never yours to control.</p>
+</section>
+
+<!-- SECTION 2 -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section class="fade-in">
+  <span class="eyebrow">Shukr in practice</span>
+  <h2>Look at what the people around you don't have</h2>
+  <p>Gratitude is not a feeling that arrives on its own. It is a practice — one that requires you to actually stop and look.</p>
+  <p>Look at the person who struggles to even make it to Jumuah. Look at the one who dreams of work that means something, and settles for a role that means nothing to them. Look at your health, your flexibility, your company, the quality of the people beside you. These things feel ordinary only because you have been around them long enough.</p>
+  <p><strong>The blessings in your life are not the baseline. They are the exception.</strong> And most of them, you did nothing to earn — they were placed in your path before you even knew you needed them.</p>
+  <p>This is the practice: regularly, deliberately, look at what others carry that you don't. Not from arrogance, but from honest recognition of what you have been given.</p>
+</section>
+
+<!-- SECTION 3 -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section class="fade-in">
+  <span class="eyebrow">The weight of Amanah</span>
+  <h2>A blessing comes with a responsibility</h2>
+  <p>Every gift carries a weight. The question is not only "am I grateful?" — it is "am I giving this blessing its due?"</p>
+  <p>Think about the hafidh of the Quran. Allah has placed His words in their chest. Do you think He will not ask what was done with that trust? The same applies to every blessing you have been given — your time, your ability, your opportunity, your role.</p>
+  <p><strong>Amanah is the other side of Shukr.</strong> Gratitude without responsibility is incomplete. Are you bringing Ihsan to what you have been entrusted with? Are you using the full hours? Working with presence, not just presence?</p>
+
+  <blockquote>
+    <p>Indeed, Allah commands you to render trusts to whom they are due.</p>
+    <cite>— Surah An-Nisa, 4:58</cite>
+  </blockquote>
+
+  <p>Working with Ihsan — fully, honestly, carefully — is not just a professional standard. It is a form of Shukr to Allah. He gave you the opportunity. Giving it its right is how you say thank you.</p>
+</section>
+
+<!-- SECTION 4 — Names of Allah -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section class="fade-in">
+  <span class="eyebrow">The practice of dua</span>
+  <h2>Call on Him by His names</h2>
+  <p>When you make dua, you are not informing Allah of your needs. He already knows. You are acknowledging your own dependency — that you are not self-sufficient, and He is.</p>
+  <p>Call on Him by the names that speak to what you are asking for. Pour your heart out. Be honest about your weakness before being bold with your request — the way Zakariyya was, when he named his weakness before he named his want.</p>
+
+  <div class="names-grid">
+    <div class="name-card">
+      <div class="name-arabic">الفتّاح</div>
+      <div class="name-transliteration">Al-Fattah</div>
+      <div class="name-meaning">The Opener</div>
+      <div class="name-body">Nothing is closed to Him. No path too blocked, no door too shut. He opens what He wills, when He wills — and when He opens something, nothing in creation can close it. Call on Al-Fattah when you face a wall.</div>
+    </div>
+    <div class="name-card">
+      <div class="name-arabic">المالك</div>
+      <div class="name-transliteration">Al-Maalik</div>
+      <div class="name-meaning">The King, The Owner</div>
+      <div class="name-body">Everything you see belongs to Him. Your provision, your time, your abilities, your connections — none of it is yours to possess. Asking Al-Maalik is an act of honesty: you are acknowledging that you are asking the One who actually owns what you are asking for.</div>
+    </div>
+    <div class="name-card">
+      <div class="name-arabic">الرّزّاق</div>
+      <div class="name-transliteration">Al-Razzaq</div>
+      <div class="name-meaning">The Provider</div>
+      <div class="name-body">Rizq is not limited by market conditions, your CV, your connections, or your effort. Al-Razzaq provides in ways that don't follow logic — from directions you never anticipated. Your job is to put in the effort. His job is to provide. And He does not forget His job.</div>
+    </div>
+  </div>
+
+  <blockquote style="margin-top:40px;">
+    <p>My Lord, my bones have grown feeble, my head has turned white with age — and never, my Lord, have I been disappointed in calling upon You.</p>
+    <cite>— Zakariyya (peace be upon him), Surah Maryam 19:4</cite>
+  </blockquote>
+
+  <p>Notice what he did. He named his weakness first — bones, age, diminished strength. Then he made his request. Not because Allah needed the preamble, but because Zakariyya understood that genuine dua begins with genuine humility. <strong>Allah does not need your dua. You need Him.</strong> Ask accordingly.</p>
+</section>
+
+<!-- SECTION 5 — Lessons -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section class="fade-in">
+  <span class="eyebrow">What to take away</span>
+  <h2>Three things worth doing</h2>
+
+  <div class="lessons">
+    <div class="lesson-item">
+      <div class="lesson-num">01</div>
+      <div>
+        <div class="lesson-title">Note your Tawakkul wins</div>
+        <div class="lesson-body">Every time you put your trust in Allah and He came through — write it down. Not because you need to prove anything, but because you will forget. The human memory is quick to attribute success to effort and slow to remember the times it made no sense at all. Keep a record. Read it when doubt sets in.</div>
+        <span class="lesson-tag">Daily · Faith</span>
+      </div>
+    </div>
+    <div class="lesson-item">
+      <div class="lesson-num">02</div>
+      <div>
+        <div class="lesson-title">Give charity every single day</div>
+        <div class="lesson-body">Even if it is one pound. Even if it is small. The amount is not the point — the consistency is. Charity diverts calamity, attracts barakah, and keeps your hand open rather than clenched. A closed hand cannot receive. Make it a non-negotiable: every day, something leaves your hand for the sake of Allah.</div>
+        <span class="lesson-tag">Daily · Ibadah</span>
+      </div>
+    </div>
+    <div class="lesson-item">
+      <div class="lesson-num">03</div>
+      <div>
+        <div class="lesson-title">Be bold and honest in your dua</div>
+        <div class="lesson-body">Don't be shy with Allah. He already knows your situation better than you do — you are not informing Him, you are connecting with Him. Name your weakness. Name your need. Then ask with full conviction, not hedged requests. The person who never makes dua is not playing it safe — they are cutting themselves off from the most direct line they have.</div>
+        <span class="lesson-tag">Daily · Dua</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIONS -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section class="fade-in" id="actions">
+  <span class="eyebrow">Your practice</span>
+  <h2>Tick these off today</h2>
+  <p>Small actions that compound. Check each one as you do it — it resets at midnight.</p>
+  <div class="actions-wrap" id="actions-wrap"></div>
+</section>
+
+<!-- CLOSING -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<div class="closing fade-in">
+  <div class="closing-orb"></div>
+  <span class="eyebrow">A final reminder</span>
+  <h2>You cannot thank Him enough.<br>But you can keep trying.</h2>
+  <p style="max-width:500px;margin:0 auto;color:var(--fg2);">The recognition itself is Shukr. The effort is Shukr. The dua is Shukr. The Amanah is Shukr. You will never fully match what you have been given — and Allah knows that. What He asks for is the attempt, honestly made, every single day.</p>
+  <div class="arabic-close">رَبِّ إِنِّي وَهَنَ الْعَظْمُ مِنِّي وَاشْتَعَلَ الرَّأْسُ شَيْبًا وَلَمْ أَكُنْ بِدُعَائِكَ رَبِّ شَقِيًّا</div>
+  <p class="arabic-sub">"My Lord, my bones have grown feeble and my head has turned white with age —<br>and never, my Lord, have I been disappointed in calling upon You."<br>— Zakariyya, Maryam 19:4</p>
+</div>
+
+<script src="../assets/theme.js"></script>
+<script>
+// Scroll fade
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// Daily actions (reset at midnight via date key)
+const TODAY = new Date().toISOString().slice(0,10);
+const ACTIONS_KEY = 'gratitude-actions-' + TODAY;
+const ACTIONS = [
+  { id:'tawakkul', title:'Note a Tawakkul win', desc:'Write down one moment today where you put your trust in Allah. Big or small.' },
+  { id:'charity',  title:'Give charity today',   desc:'Even £1. Send it now if you haven\'t yet.' },
+  { id:'dua',      title:'Make dua using His names', desc:'Call on Al-Fattah, Al-Maalik, or Al-Razzaq — pour your heart out, honestly.' },
+  { id:'look',     title:'Look at one blessing with fresh eyes', desc:'One thing in your life that someone else doesn\'t have. Sit with it for a moment.' },
+];
+
+function loadActions() {
+  const saved = JSON.parse(localStorage.getItem(ACTIONS_KEY) || '{}');
+  const wrap = document.getElementById('actions-wrap');
+  wrap.innerHTML = '';
+  ACTIONS.forEach(a => {
+    const done = !!saved[a.id];
+    const el = document.createElement('div');
+    el.className = 'action-item' + (done ? ' done' : '');
+    el.innerHTML = `
+      <div class="action-check${done?' checked':''}" data-id="${a.id}"></div>
+      <div class="action-content">
+        <div class="action-title">${a.title}</div>
+        <div class="action-desc">${a.desc}</div>
+      </div>`;
+    wrap.appendChild(el);
+  });
+  wrap.querySelectorAll('.action-check').forEach(box => {
+    box.onclick = () => {
+      const data = JSON.parse(localStorage.getItem(ACTIONS_KEY) || '{}');
+      data[box.dataset.id] = !data[box.dataset.id];
+      localStorage.setItem(ACTIONS_KEY, JSON.stringify(data));
+      loadActions();
+    };
+  });
+}
+loadActions();
+</script>
+</body>
+</html>
