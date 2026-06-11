@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Josefin+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Scheherazade+New:wght@400;500&display=swap" rel="stylesheet">
-<script>(function(){var t=localStorage.getItem('fatih-lib-theme');document.documentElement.setAttribute('data-theme',['light','dark','fatih'].includes(t)?t:'light');})();</script>
+<script>(function(){var t=localStorage.getItem('fatih-lib-theme');document.documentElement.setAttribute('data-theme',['light','dark','medieval','fatih'].includes(t)?t:'light');})();</script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,8 +32,25 @@
   --text: var(--fg1); --text-muted: var(--fg3);
 }
 
-/* ── DARK ── */
+/* ── DARK (same structure as Light, dark colours) ── */
 [data-theme="dark"] {
+  --bg:#0E0F0D; --bg-2:#161713; --bg-3:#1E2019; --cream:#0E0F0D;
+  --fg1:#F0EDE6; --fg2:#b8b4ad; --fg3:#8A8A7E; --fg4:#5a5a52;
+  --accent:#C9A84C; --accent-soft:rgba(201,168,76,.08); --accent-border:rgba(201,168,76,.22); --accent-strong:#a8863a;
+  --teal:#7A8C72; --teal-soft:rgba(122,140,114,.08); --teal-border:rgba(122,140,114,.22);
+  --gold:#C9A84C; --gold-soft:rgba(201,168,76,.08); --gold-border:rgba(201,168,76,.22);
+  --gradient:linear-gradient(135deg,#C9A84C 0%,#a8863a 100%);
+  --border:#2A2B27; --border-soft:#222320; --border-strong:#3a3b37;
+  --shadow-1:0 1px 3px rgba(0,0,0,.3); --shadow-2:0 2px 8px rgba(0,0,0,.4);
+  --shadow-3:0 4px 14px rgba(0,0,0,.5); --shadow-4:0 14px 40px rgba(0,0,0,.6);
+  --r-sm:8px; --r-md:10px; --r-lg:14px; --r-xl:16px; --r-full:999px;
+  --font-display:'Playfair Display',Georgia,serif; --font-ui:'DM Sans',system-ui,sans-serif;
+  --nav-bg:rgba(14,15,13,0.95); --eyebrow:#7A8C72;
+  --text:var(--fg1); --text-muted:var(--fg3);
+}
+
+/* ── MEDIEVAL (editorial dark) ── */
+[data-theme="medieval"] {
   --bg:#0E0F0D; --bg-2:#161713; --bg-3:#1E2019; --cream:#0E0F0D;
   --fg1:#F0EDE6; --fg2:#b8b4ad; --fg3:#8A8A7E; --fg4:#5a5a52;
   --accent:#C9A84C; --accent-soft:rgba(201,168,76,.08); --accent-border:rgba(201,168,76,.22); --accent-strong:#a8863a;
@@ -106,7 +123,7 @@ nav {
   color:var(--fg1); white-space:nowrap;
 }
 [data-theme="fatih"] .nav-title { font-weight:600; letter-spacing:.06em; font-size:14px; }
-[data-theme="dark"] .nav-title { font-weight:300; letter-spacing:.08em; }
+[data-theme="medieval"] .nav-title { font-weight:300; letter-spacing:.08em; }
 
 .nav-right { display:flex; align-items:center; gap:12px; flex-shrink:0; }
 
@@ -139,7 +156,8 @@ nav {
   width:600px; height:600px; border-radius:50%; pointer-events:none; opacity:.6;
 }
 [data-theme="light"] .hero-orb { background:radial-gradient(ellipse at center,rgba(200,168,78,.10) 0%,rgba(60,184,154,.05) 50%,transparent 70%); }
-[data-theme="dark"] .hero-orb { background:radial-gradient(ellipse at center,rgba(201,168,76,.06) 0%,transparent 65%); }
+[data-theme="dark"] .hero-orb,
+[data-theme="medieval"] .hero-orb { background:radial-gradient(ellipse at center,rgba(201,168,76,.06) 0%,transparent 65%); }
 [data-theme="fatih"] .hero-orb { background:radial-gradient(ellipse at center,rgba(201,151,58,.08) 0%,rgba(59,191,204,.04) 50%,transparent 70%); }
 
 .hero-meta {
@@ -156,7 +174,7 @@ nav {
   font-weight:500; line-height:1.05; letter-spacing:-.02em;
   color:var(--fg1); margin-bottom:24px; position:relative;
 }
-[data-theme="dark"] .hero h1 { font-weight:300; }
+[data-theme="medieval"] .hero h1 { font-weight:300; }
 [data-theme="fatih"] .hero h1 { font-weight:600; letter-spacing:-.01em; }
 
 .hero-sub {
@@ -186,11 +204,11 @@ h2 {
   font-size:clamp(30px,4.5vw,48px);
   font-weight:500; line-height:1.12; color:var(--fg1); margin-bottom:20px;
 }
-[data-theme="dark"] h2 { font-weight:300; }
+[data-theme="medieval"] h2 { font-weight:300; }
 [data-theme="fatih"] h2 { font-weight:600; }
 p { color:var(--fg2); margin-bottom:18px; font-size:16px; line-height:1.8; }
 p strong { color:var(--fg1); font-weight:500; }
-[data-theme="dark"] p strong { font-weight:400; }
+[data-theme="medieval"] p strong { font-weight:400; }
 
 blockquote {
   border-left:3px solid var(--accent);
@@ -217,13 +235,14 @@ blockquote cite { font-size:12px; color:var(--fg3); margin-top:10px; display:blo
   color:var(--border-strong); line-height:1; padding-top:4px;
   transition:color .3s;
 }
-[data-theme="dark"] .lesson-num { color:var(--border); }
+[data-theme="dark"] .lesson-num,
+[data-theme="medieval"] .lesson-num { color:var(--border); }
 .lesson-item:hover .lesson-num { color:var(--accent); }
 .lesson-title {
   font-family:var(--font-display); font-size:21px; font-weight:500;
   color:var(--fg1); margin-bottom:10px; line-height:1.3;
 }
-[data-theme="dark"] .lesson-title { font-weight:400; }
+[data-theme="medieval"] .lesson-title { font-weight:400; }
 .lesson-body { color:var(--fg2); font-size:15px; line-height:1.85; }
 .lesson-tag {
   display:inline-block; padding:3px 12px; font-size:11px; font-weight:500;
@@ -268,7 +287,7 @@ blockquote cite { font-size:12px; color:var(--fg3); margin-top:10px; display:blo
   font-family:var(--font-display); font-size:22px; font-weight:500;
   color:var(--fg1); margin-bottom:28px;
 }
-[data-theme="dark"] .actions-wrap h3 { font-weight:300; }
+[data-theme="medieval"] .actions-wrap h3 { font-weight:300; }
 .action-item {
   display:flex; align-items:flex-start; gap:16px;
   padding:18px 0; border-bottom:1px solid var(--border-soft);
@@ -303,7 +322,8 @@ blockquote cite { font-size:12px; color:var(--fg3); margin-top:10px; display:blo
   width:500px; height:500px; border-radius:50%; pointer-events:none;
 }
 [data-theme="light"] .closing-orb { background:radial-gradient(ellipse at center,rgba(60,184,154,.07) 0%,transparent 65%); }
-[data-theme="dark"] .closing-orb { background:radial-gradient(ellipse at center,rgba(201,168,76,.05) 0%,transparent 65%); }
+[data-theme="dark"] .closing-orb,
+[data-theme="medieval"] .closing-orb { background:radial-gradient(ellipse at center,rgba(201,168,76,.05) 0%,transparent 65%); }
 [data-theme="fatih"] .closing-orb { background:radial-gradient(ellipse at center,rgba(59,191,204,.06) 0%,transparent 65%); }
 .closing h2 { margin-bottom:16px; }
 .arabic-close {
@@ -346,6 +366,7 @@ blockquote cite { font-size:12px; color:var(--fg3); margin-top:10px; display:blo
     <div class="theme-toggle">
       <button data-theme-btn="light">Light</button>
       <button data-theme-btn="dark">Dark</button>
+      <button data-theme-btn="medieval">Medieval</button>
       <button data-theme-btn="fatih">Fatih</button>
     </div>
   </div>
@@ -366,7 +387,7 @@ blockquote cite { font-size:12px; color:var(--fg3); margin-top:10px; display:blo
   <span class="eyebrow">The first truth</span>
   <h2>The result is not yours to claim</h2>
   <p>You put in the effort. You showed up, you worked, you tried. But the actual result — the opening, the timing, the outcome — that was never in your hands.</p>
-  <p>Allah opens doors that no amount of skill or strategy can fully explain. And He closes them just as quietly. The months you worked hardest were not always your best months. The times things opened were not always when you did the most. <strong>That gap — between effort and result — is where Allah is.</strong></p>
+  <p>Allah opens doors that no amount of skill or strategy can fully explain. And He closes them just as quietly. The months you worked hardest were not always your best months. The times things opened were not always when you did the most. <strong>That gap, between effort and result, is where Allah is.</strong></p>
   <p>Recognise this sincerely, not just as something you say. The effort is your obligation. The result belongs entirely to Him.</p>
 
   <blockquote>
