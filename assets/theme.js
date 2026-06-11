@@ -12,7 +12,7 @@
 
   function init() {
     var saved = localStorage.getItem(KEY);
-    apply(THEMES.includes(saved) ? saved : 'fatih');
+    apply(THEMES.includes(saved) ? saved : 'light');
     document.querySelectorAll('[data-theme-btn]').forEach(function (btn) {
       btn.addEventListener('click', function () { apply(btn.dataset.themeBtn); });
     });
