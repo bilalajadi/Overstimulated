@@ -335,18 +335,115 @@ footer {
 .footer-credit a { color: var(--accent); text-decoration: none; }
 .footer-credit a:hover { text-decoration: underline; }
 
+/* ─── ACTIONS LIBRARY ─── */
+.actions-section {
+  border-top: 1px solid var(--border-soft);
+  padding: 64px 32px 100px;
+  max-width: 1080px; margin: 0 auto;
+}
+.actions-header { margin-bottom: 32px; }
+.actions-header-top {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.actions-badge {
+  font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  background: var(--accent-soft); border: 1px solid var(--accent-border);
+  color: var(--accent); border-radius: var(--r-full); padding: 3px 10px;
+}
+.actions-title {
+  font-family: var(--font-display); font-size: clamp(20px,3vw,26px);
+  font-weight: 600; color: var(--fg);
+}
+[data-theme="light"] .actions-title { font-weight: 500; }
+[data-theme="dark"] .actions-title { font-weight: 300; letter-spacing: .02em; }
+.actions-subtitle { font-size: 14px; color: var(--fg-muted); line-height: 1.6; max-width: 520px; }
+
+/* Search + filters */
+.actions-controls {
+  display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; align-items: center;
+}
+.actions-search {
+  flex: 1; min-width: 200px; max-width: 320px;
+  background: var(--bg-card); border: 1px solid var(--border-soft);
+  border-radius: var(--r-full); padding: 9px 16px;
+  font-family: var(--font-body); font-size: 13px; color: var(--fg);
+  outline: none; transition: border-color .2s;
+}
+.actions-search::placeholder { color: var(--fg-muted); }
+.actions-search:focus { border-color: var(--accent); }
+.tag-filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag-btn {
+  background: var(--bg-raised); border: 1px solid var(--border-soft);
+  border-radius: var(--r-full); padding: 6px 14px;
+  font-family: var(--font-body); font-size: 12px; font-weight: 500;
+  color: var(--fg-muted); cursor: pointer; transition: all .18s ease;
+}
+.tag-btn:hover { border-color: var(--accent); color: var(--fg); }
+.tag-btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+/* Action cards grid */
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.action-card {
+  background: var(--bg-card); border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg); padding: 20px 18px;
+  box-shadow: var(--shadow-card);
+  transition: transform .2s ease, border-color .2s ease;
+}
+.action-card:hover { transform: translateY(-2px); border-color: var(--card-hover-border); }
+.action-card-tags { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.action-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  border-radius: var(--r-full); padding: 2px 9px;
+  border: 1px solid;
+}
+.action-tag.faith  { color: var(--accent); background: var(--accent-soft); border-color: var(--accent-border); }
+.action-tag.mind   { color: var(--eyebrow-color, #3CB89A); background: rgba(60,184,154,.08); border-color: rgba(60,184,154,.22); }
+.action-tag.daily  { color: var(--fg-muted); background: var(--bg-raised); border-color: var(--border-soft); }
+.action-tag.onetime { color: var(--fg-muted); background: var(--bg-raised); border-color: var(--border-soft); }
+[data-theme="fatih"] .action-tag.mind { color: var(--teal, #2ABFAA); background: var(--teal-soft,rgba(42,191,170,.08)); border-color: var(--teal-border,rgba(42,191,170,.22)); }
+
+.action-card-text {
+  font-family: var(--font-display); font-size: 15px; font-weight: 500;
+  color: var(--fg); line-height: 1.45; margin-bottom: 12px;
+}
+[data-theme="light"] .action-card-text { font-size: 15px; }
+[data-theme="dark"] .action-card-text { font-weight: 400; }
+.action-card-source {
+  font-size: 11px; color: var(--fg-muted); letter-spacing: .04em;
+  display: flex; align-items: center; gap: 5px;
+}
+.action-card-source::before { content:'↗'; font-size:10px; }
+.no-results {
+  grid-column: 1/-1; text-align: center; padding: 48px 0;
+  color: var(--fg-muted); font-size: 14px;
+}
+
 /* ─── FADE IN ─── */
 .fade-in { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .fade-in.visible { opacity: 1; transform: none; }
 
 /* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .cards { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 10px; }
+  .actions-grid { grid-template-columns: 1fr 1fr; }
+}
 @media (max-width: 640px) {
-  nav { padding: 0 20px; }
+  nav { padding: 0 16px; }
   .nav-logo-sub { display: none; }
-  .hero { padding: 110px 20px 60px; }
-  .library { padding: 32px 20px 80px; }
-  .cards { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
-  footer { padding: 20px; flex-direction: column; text-align: center; }
+  .hero { padding: 100px 20px 60px; }
+  .library { padding: 32px 16px 60px; }
+  .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .card { padding: 18px 14px 14px; }
+  .card-desc { display: none; }
+  .actions-section { padding: 48px 16px 80px; }
+  .actions-grid { grid-template-columns: 1fr; }
+  .actions-search { max-width: 100%; }
+  footer { padding: 20px 16px; flex-direction: column; text-align: center; }
 }
 </style>
 </head>
@@ -386,42 +483,19 @@ footer {
     <span class="category-eyebrow">Category 01</span>
     <div class="category-title">Mind &amp; Focus</div>
     <div class="cards">
-
       <a class="card" href="overstimulated/">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44l-1.66-7.23a2.5 2.5 0 0 1 .78-2.4L9.5 7V2Z" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44l1.66-7.23a2.5 2.5 0 0 0-.78-2.4L14.5 7V2Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Overstimulation</div>
-          <div class="card-desc">Reclaim your attention from a hijacked nervous system.</div>
-        </div>
-        <div class="card-arrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44l-1.66-7.23a2.5 2.5 0 0 1 .78-2.4L9.5 7V2Z" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44l1.66-7.23a2.5 2.5 0 0 0-.78-2.4L14.5 7V2Z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Overstimulation</div><div class="card-desc">Reclaim your attention from a hijacked nervous system.</div></div>
+        <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
-
-      <div class="card soon">
-        <span class="soon-badge">Soon</span>
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Deep Work</div>
-          <div class="card-desc">Build the capacity for sustained, undistracted focus.</div>
-        </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Deep Work</div><div class="card-desc">Build the capacity for sustained, undistracted focus.</div></div>
       </div>
-
-      <div class="card soon">
-        <span class="soon-badge">Soon</span>
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01" stroke-linecap="round"/><path d="M8 6h8M8 10h8M8 14h4" stroke-linecap="round"/></svg>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Digital Detox</div>
-          <div class="card-desc">A structured exit from compulsive screen use.</div>
-        </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4" stroke-linecap="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Digital Detox</div><div class="card-desc">A structured exit from compulsive screen use.</div></div>
       </div>
-
     </div>
   </div>
 
@@ -430,128 +504,145 @@ footer {
     <span class="category-eyebrow">Category 02</span>
     <div class="category-title">Faith &amp; Islam</div>
     <div class="cards">
-
-      <div class="card soon">
-        <span class="soon-badge">Soon</span>
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Prayer Consistency</div>
-          <div class="card-desc">Rebuild the habit of salah without guilt.</div>
-        </div>
+      <a class="card" href="gratitude/">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Gratitude</div><div class="card-desc">Shukr as a practice, not a feeling.</div></div>
+        <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Prayer Consistency</div><div class="card-desc">Rebuild the habit of salah without guilt.</div></div>
       </div>
-
-      <div class="card soon">
-        <span class="soon-badge">Soon</span>
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Gratitude</div>
-          <div class="card-desc">Shukr as a practice, not a feeling.</div>
-        </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Tawakkul</div><div class="card-desc">Act fully. Then release the outcome to Allah.</div></div>
       </div>
+    </div>
+  </div>
 
-      <div class="card soon">
-        <span class="soon-badge">Soon</span>
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Tawakkul</div>
-          <div class="card-desc">Act fully. Then release the outcome to Allah.</div>
-        </div>
+  <!-- Prophets & Companions -->
+  <div class="category fade-in">
+    <span class="category-eyebrow">Category 03</span>
+    <div class="category-title">Prophets &amp; Companions</div>
+    <div class="cards">
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 22V12h6v10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Prophet Nuh</div><div class="card-desc">What is true success — when no one believes you.</div></div>
       </div>
-
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke-linecap="round"/><path d="M12 8v4M12 16h.01" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Prophet Musa</div><div class="card-desc">Indeed my Lord will save me — certainty in the impossible.</div></div>
+      </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Prophet Yaqub</div><div class="card-desc">I complain my worries and wants only to Allah.</div></div>
+      </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Ibn Rawaahah</div><div class="card-desc">Stay calm, my soul — in the face of martyrdom.</div></div>
+      </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Musab bin Umair</div><div class="card-desc">The ultimate sacrifice — giving everything for what matters.</div></div>
+      </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Ka'b bin Maalik</div><div class="card-desc">What procrastination actually costs you.</div></div>
+      </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Bilal ibn Rabaah</div><div class="card-desc">Never giving up — when every reason to quit is valid.</div></div>
+      </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Muhammad &amp; Khadijah</div><div class="card-desc">How to deal with heartbreak — the model of the Prophet.</div></div>
+      </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Bravery</div><div class="card-desc">Smiling in the face of pain — what courage actually looks like.</div></div>
+      </div>
     </div>
   </div>
 
   <!-- Healing & Emotion -->
   <div class="category fade-in">
-    <span class="category-eyebrow">Category 03</span>
+    <span class="category-eyebrow">Category 04</span>
     <div class="category-title">Healing &amp; Emotion</div>
     <div class="cards">
-
-      <div class="card soon">
-        <span class="soon-badge">Soon</span>
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Anxiety</div>
-          <div class="card-desc">Understand what your nervous system is trying to say.</div>
-        </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Anxiety</div><div class="card-desc">Understand what your nervous system is trying to say.</div></div>
       </div>
-
-      <div class="card soon">
-        <span class="soon-badge">Soon</span>
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18M3 6h18M3 18h18" stroke-linecap="round"/></svg>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Grief</div>
-          <div class="card-desc">How to move through loss without bypassing it.</div>
-        </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18M3 6h18M3 18h12" stroke-linecap="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Grief</div><div class="card-desc">How to move through loss without bypassing it.</div></div>
       </div>
-
-      <div class="card soon">
-        <span class="soon-badge">Soon</span>
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Overthinking</div>
-          <div class="card-desc">Break the loop. Get out of your own head.</div>
-        </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Overthinking</div><div class="card-desc">Break the loop. Get out of your own head.</div></div>
       </div>
-
     </div>
   </div>
 
   <!-- Productivity -->
   <div class="category fade-in">
-    <span class="category-eyebrow">Category 04</span>
+    <span class="category-eyebrow">Category 05</span>
     <div class="category-title">Productivity</div>
     <div class="cards">
-
-      <div class="card soon">
-        <span class="soon-badge">Soon</span>
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Morning Routine</div>
-          <div class="card-desc">Own the first hour before the world does.</div>
-        </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Morning Routine</div><div class="card-desc">Own the first hour before the world does.</div></div>
       </div>
-
-      <div class="card soon">
-        <span class="soon-badge">Soon</span>
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Energy Management</div>
-          <div class="card-desc">Work with your biology, not against it.</div>
-        </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Energy Management</div><div class="card-desc">Work with your biology, not against it.</div></div>
       </div>
-
-      <div class="card soon">
-        <span class="soon-badge">Soon</span>
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Rest</div>
-          <div class="card-desc">Rest is not a reward. It is part of the work.</div>
-        </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        <div class="card-body"><div class="card-title">Rest</div><div class="card-desc">Rest is not a reward. It is part of the work.</div></div>
       </div>
-
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Barakah</div><div class="card-desc">How to do more with less — blessing in your time.</div></div>
+      </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="card-body"><div class="card-title">Time Blocking</div><div class="card-desc">Take control of your day before others do.</div></div>
+      </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+        <div class="card-body"><div class="card-title">Task Management</div><div class="card-desc">A system that works — not one that just looks good.</div></div>
+      </div>
+      <div class="card soon"><span class="soon-badge">Soon</span>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">Master To-do Lists</div><div class="card-desc">Stop keeping things in your head. Get them on paper.</div></div>
+      </div>
     </div>
   </div>
 
 </main>
+
+<!-- ACTIONS LIBRARY -->
+<div class="actions-section fade-in" id="actions-library">
+  <div class="actions-header">
+    <div class="actions-header-top">
+      <span class="actions-badge">Actions Library</span>
+    </div>
+    <div class="actions-title">Things worth doing</div>
+    <p class="actions-subtitle">Practical steps distilled from every lesson. Searchable and tagged. More added with every new guide.</p>
+  </div>
+  <div class="actions-controls">
+    <input class="actions-search" type="text" placeholder="Search actions…" id="action-search">
+    <div class="tag-filters" id="tag-filters">
+      <button class="tag-btn active" data-filter="all">All</button>
+      <button class="tag-btn" data-filter="faith">Faith</button>
+      <button class="tag-btn" data-filter="mind">Mind</button>
+      <button class="tag-btn" data-filter="daily">Daily</button>
+      <button class="tag-btn" data-filter="onetime">One-time</button>
+    </div>
+  </div>
+  <div class="actions-grid" id="actions-grid"></div>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -566,6 +657,58 @@ footer {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Actions Library
+  const ACTIONS = [
+    { title: "Make dua using His Names", desc: "Call on Al-Razzaq when you feel scarce. Call on Al-Fattah when you feel stuck.", tags: ["faith", "daily"], source: "Gratitude" },
+    { title: "Note a Tawakkul win", desc: "Write down one moment this week where you let go and it worked out.", tags: ["faith", "daily"], source: "Gratitude" },
+    { title: "Give £1 in charity today", desc: "A small sadaqah done consistently is better than a large one done once.", tags: ["faith", "daily"], source: "Gratitude" },
+    { title: "Look at one blessing with fresh eyes", desc: "Pick something you take for granted. Sit with it for 60 seconds.", tags: ["mind", "daily"], source: "Gratitude" },
+    { title: "Do a single-tab session", desc: "For your next work block, allow yourself only one browser tab.", tags: ["mind", "daily"], source: "Overstimulation" },
+    { title: "Phone-free first 30 minutes", desc: "Don't check your phone for the first 30 minutes after you wake up.", tags: ["mind", "daily"], source: "Overstimulation" },
+    { title: "Name what you're feeling", desc: "When overwhelmed, pause and label the emotion. Naming reduces intensity.", tags: ["mind", "daily"], source: "Overstimulation" },
+    { title: "Write your 3 top tasks tonight", desc: "Before bed, write the 3 most important things for tomorrow — nothing more.", tags: ["daily", "mind"], source: "Productivity" }
+  ];
+
+  function renderActions(list) {
+    const grid = document.getElementById('actions-grid');
+    if (!list.length) {
+      grid.innerHTML = '<p style="color:var(--text-muted);grid-column:1/-1;text-align:center;padding:32px 0;">No actions found.</p>';
+      return;
+    }
+    grid.innerHTML = list.map(a => `
+      <div class="action-card" data-tags="${a.tags.join(' ')}">
+        <div class="action-meta">
+          <span class="action-source">${a.source}</span>
+          <div class="action-tags">${a.tags.map(t => `<span class="action-tag">${t}</span>`).join('')}</div>
+        </div>
+        <div class="action-title">${a.title}</div>
+        <div class="action-desc">${a.desc}</div>
+      </div>
+    `).join('');
+  }
+
+  function filterActions() {
+    const query = document.getElementById('action-search').value.toLowerCase();
+    const active = document.querySelector('.tag-btn.active').dataset.filter;
+    const filtered = ACTIONS.filter(a => {
+      const matchTag = active === 'all' || a.tags.includes(active);
+      const matchQuery = !query || a.title.toLowerCase().includes(query) || a.desc.toLowerCase().includes(query);
+      return matchTag && matchQuery;
+    });
+    renderActions(filtered);
+  }
+
+  document.getElementById('action-search').addEventListener('input', filterActions);
+  document.querySelectorAll('.tag-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      filterActions();
+    });
+  });
+
+  renderActions(ACTIONS);
 </script>
 </body>
 </html>
