@@ -1,779 +1,568 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="fatih">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Reset — Reclaim Your Mind</title>
+<title>Fatih Library</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Josefin+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<script>
+  // Apply saved theme before paint to avoid flash
+  (function(){var t=localStorage.getItem('fatih-lib-theme');if(t)document.documentElement.setAttribute('data-theme',t);})();
+</script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-  :root {
-    --bg: #0E0F0D;
-    --bg-2: #161713;
-    --bg-3: #1E2019;
-    --text: #F0EDE6;
-    --text-muted: #8A8A7E;
-    --gold: #C9A84C;
-    --sage: #7A8C72;
-    --danger: #C97B4C;
-    --border: #2A2B27;
-    --radius: 4px;
-  }
+/* ─── FATIH THEME (default) ─── */
+:root,
+[data-theme="fatih"] {
+  --bg:       #0B1120;
+  --bg-card:  #162035;
+  --bg-raised:#1C2840;
+  --fg:       #EDF1F5;
+  --fg-muted: rgba(237,241,245,0.52);
+  --fg-ghost: rgba(237,241,245,0.10);
+  --accent:   #3BBFCC;
+  --accent-soft: rgba(59,191,204,0.10);
+  --accent-border: rgba(59,191,204,0.20);
+  --accent-glow: 0 0 16px rgba(59,191,204,0.18);
+  --gold:     #C9973A;
+  --border:   rgba(59,191,204,0.14);
+  --border-soft: rgba(237,241,245,0.07);
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.35);
+  --shadow-raised: 0 4px 24px rgba(0,0,0,0.5);
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 24px; --r-full: 9999px;
+  --font-display: 'Josefin Sans', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --nav-bg: rgba(11,17,32,0.92);
+  --eyebrow-color: var(--accent);
+  --card-hover-border: rgba(59,191,204,0.40);
+  --soon-opacity: 0.42;
+}
 
-  html { scroll-behavior: smooth; }
+/* ─── LIGHT THEME (Arafah) ─── */
+[data-theme="light"] {
+  --bg:       #f9f8f4;
+  --bg-card:  #ffffff;
+  --bg-raised:#f1f0eb;
+  --fg:       #1a1a18;
+  --fg-muted: #8a8a80;
+  --fg-ghost: rgba(26,26,24,0.08);
+  --accent:   #E8854A;
+  --accent-soft: rgba(232,133,74,0.08);
+  --accent-border: rgba(232,133,74,0.22);
+  --accent-glow: none;
+  --gold:     #c8a84e;
+  --border:   #e6e5de;
+  --border-soft: #eeedea;
+  --shadow-card: 0 2px 10px rgba(0,0,0,0.05);
+  --shadow-raised: 0 4px 20px rgba(0,0,0,0.07);
+  --r-sm: 8px; --r-md: 10px; --r-lg: 14px; --r-xl: 20px; --r-full: 9999px;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --nav-bg: rgba(249,248,244,0.92);
+  --eyebrow-color: var(--accent);
+  --card-hover-border: #E8854A;
+  --soon-opacity: 0.45;
+}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-    font-size: 16px;
-    overflow-x: hidden;
-  }
+/* ─── DARK THEME (Refined Overstimulated) ─── */
+[data-theme="dark"] {
+  --bg:       #0E0F0D;
+  --bg-card:  #161713;
+  --bg-raised:#1E2019;
+  --fg:       #F0EDE6;
+  --fg-muted: #8A8A7E;
+  --fg-ghost: rgba(240,237,230,0.06);
+  --accent:   #C9A84C;
+  --accent-soft: rgba(201,168,76,0.08);
+  --accent-border: rgba(201,168,76,0.22);
+  --accent-glow: none;
+  --gold:     #C9A84C;
+  --border:   #2A2B27;
+  --border-soft: #242520;
+  --shadow-card: 0 2px 10px rgba(0,0,0,0.4);
+  --shadow-raised: 0 4px 24px rgba(0,0,0,0.55);
+  --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 10px; --r-full: 9999px;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --nav-bg: rgba(14,15,13,0.95);
+  --eyebrow-color: #7A8C72;
+  --card-hover-border: var(--accent);
+  --soon-opacity: 0.38;
+}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 48px;
-    background: linear-gradient(to bottom, rgba(14,15,13,0.95), transparent);
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px; font-weight: 300; letter-spacing: 0.12em;
-    color: var(--gold); text-decoration: none;
-  }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a {
-    color: var(--text-muted); text-decoration: none;
-    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text); }
+/* ─── BASE ─── */
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+}
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; padding: 120px 24px 80px;
-    position: relative; overflow: hidden;
-  }
-  .hero-orb {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 600px; height: 600px; border-radius: 50%;
-    background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
-    animation: breathe 6s ease-in-out infinite;
-    pointer-events: none;
-  }
-  @keyframes breathe {
-    0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
-    50% { transform: translate(-50%,-50%) scale(1.15); opacity: 1; }
-  }
-  @media (prefers-reduced-motion: reduce) { .hero-orb { animation: none; } }
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 48px; height: 60px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-soft);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+.nav-logo-mark {
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+}
+[data-theme="fatih"] .nav-logo-mark svg { stroke: var(--accent); }
+[data-theme="light"] .nav-logo-mark svg { stroke: var(--accent); }
+[data-theme="dark"] .nav-logo-mark svg { stroke: var(--accent); }
 
-  .hero-eyebrow {
-    font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 28px; position: relative;
-  }
-  .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(52px, 10vw, 96px);
-    font-weight: 300; line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 28px; position: relative;
-  }
-  .hero h1 em { font-style: italic; color: var(--gold); }
-  .hero-sub {
-    font-size: 17px; color: var(--text-muted); max-width: 480px;
-    line-height: 1.8; margin-bottom: 52px; position: relative;
-  }
-  .hero-cta {
-    display: inline-block; padding: 14px 36px;
-    border: 1px solid var(--gold); color: var(--gold);
-    text-decoration: none; font-size: 13px; letter-spacing: 0.15em;
-    text-transform: uppercase; transition: all 0.3s;
-    position: relative;
-  }
-  .hero-cta:hover { background: var(--gold); color: var(--bg); }
-  .scroll-hint {
-    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    color: var(--text-muted); font-size: 11px; letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-  .scroll-line {
-    width: 1px; height: 40px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-    animation: scrollLine 2s ease-in-out infinite;
-  }
-  @keyframes scrollLine {
-    0% { transform: scaleY(0); transform-origin: top; }
-    50% { transform: scaleY(1); transform-origin: top; }
-    51% { transform: scaleY(1); transform-origin: bottom; }
-    100% { transform: scaleY(0); transform-origin: bottom; }
-  }
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 16px; font-weight: 600; letter-spacing: 0.08em;
+  color: var(--fg);
+}
+[data-theme="light"] .nav-logo-text { font-weight: 500; letter-spacing: 0.02em; }
+[data-theme="dark"] .nav-logo-text { font-weight: 300; letter-spacing: 0.14em; }
 
-  /* SECTIONS */
-  section { padding: 100px 24px; max-width: 800px; margin: 0 auto; }
-  .section-full { max-width: 100%; padding: 100px 0; }
-  .section-inner { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+.nav-logo-sub {
+  font-family: var(--font-body);
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--fg-muted); margin-left: 2px;
+}
 
-  .eyebrow {
-    font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--sage); margin-bottom: 20px; display: block;
-  }
-  h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 300; line-height: 1.1;
-    margin-bottom: 24px;
-  }
-  h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px; font-weight: 400;
-    margin-bottom: 12px;
-  }
-  p { color: var(--text-muted); margin-bottom: 20px; font-size: 16px; }
-  p strong { color: var(--text); font-weight: 400; }
+/* Theme toggle */
+.theme-toggle {
+  display: flex; gap: 2px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-full);
+  padding: 3px;
+}
+.theme-toggle button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 5px 12px; border-radius: var(--r-full);
+  font-family: var(--font-body); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--fg-muted);
+  transition: background 0.18s ease, color 0.18s ease;
+  white-space: nowrap;
+}
+.theme-toggle button.active {
+  background: var(--accent);
+  color: var(--bg);
+}
+[data-theme="dark"] .theme-toggle button.active { color: #0E0F0D; }
 
-  /* DIVIDER */
-  .divider {
-    display: flex; align-items: center; gap: 16px;
-    max-width: 800px; margin: 0 auto 60px; padding: 0 24px;
-  }
-  .divider-line { flex: 1; height: 1px; background: var(--border); }
-  .divider-gem {
-    width: 6px; height: 6px; background: var(--gold);
-    transform: rotate(45deg); flex-shrink: 0;
-  }
+/* ─── HERO ─── */
+.hero {
+  padding: 140px 24px 80px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero-orb {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 400px; border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.5;
+}
+[data-theme="fatih"] .hero-orb {
+  background: radial-gradient(ellipse at center, rgba(59,191,204,0.08) 0%, transparent 65%);
+}
+[data-theme="light"] .hero-orb {
+  background: radial-gradient(ellipse at center, rgba(232,133,74,0.08) 0%, rgba(212,96,122,0.04) 50%, transparent 70%);
+}
+[data-theme="dark"] .hero-orb {
+  background: radial-gradient(ellipse at center, rgba(201,168,76,0.05) 0%, transparent 65%);
+}
 
-  /* BLOCKQUOTE */
-  blockquote {
-    border-left: 2px solid var(--gold);
-    padding: 16px 0 16px 28px;
-    margin: 36px 0;
-  }
-  blockquote p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-style: italic;
-    color: var(--text); font-weight: 300; line-height: 1.5;
-    margin: 0;
-  }
-  blockquote cite { font-size: 13px; color: var(--text-muted); margin-top: 10px; display: block; }
+.hero-eyebrow {
+  font-family: var(--font-body);
+  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--eyebrow-color); margin-bottom: 20px;
+  font-weight: 500; display: block; position: relative;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: 600; line-height: 1.1; letter-spacing: -0.01em;
+  color: var(--fg); margin-bottom: 18px; position: relative;
+}
+[data-theme="fatih"] .hero h1 { letter-spacing: -0.01em; }
+[data-theme="light"] .hero h1 { font-weight: 500; letter-spacing: -0.02em; }
+[data-theme="dark"] .hero h1 { font-weight: 300; letter-spacing: -0.02em; }
 
-  /* QUIZ */
-  .quiz-card {
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    padding: 48px;
-    margin-top: 48px;
-  }
-  .quiz-progress-bar {
-    height: 2px; background: var(--bg-3);
-    margin-bottom: 40px; position: relative; overflow: hidden;
-  }
-  .quiz-progress-fill {
-    height: 100%; background: var(--gold);
-    transition: width 0.4s ease;
-  }
-  .quiz-question {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px; font-weight: 400; line-height: 1.4;
-    margin-bottom: 32px; color: var(--text);
-  }
-  .quiz-options { display: flex; flex-direction: column; gap: 12px; }
-  .quiz-option {
-    padding: 16px 20px;
-    border: 1px solid var(--border);
-    background: transparent; color: var(--text-muted);
-    font-family: 'Inter', sans-serif; font-size: 14px;
-    cursor: pointer; text-align: left;
-    transition: all 0.2s; letter-spacing: 0.01em;
-    border-radius: var(--radius);
-  }
-  .quiz-option:hover { border-color: var(--gold); color: var(--text); background: rgba(201,168,76,0.04); }
-  .quiz-option.selected { border-color: var(--gold); color: var(--text); background: rgba(201,168,76,0.08); }
-  .quiz-nav {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-top: 36px;
-  }
-  .quiz-counter { font-size: 12px; color: var(--text-muted); letter-spacing: 0.1em; }
-  .btn {
-    padding: 12px 28px; font-size: 13px; letter-spacing: 0.1em;
-    text-transform: uppercase; cursor: pointer; transition: all 0.2s;
-    font-family: 'Inter', sans-serif; border-radius: var(--radius);
-    border: 1px solid var(--gold); color: var(--gold); background: transparent;
-  }
-  .btn:hover { background: var(--gold); color: var(--bg); }
-  .btn:disabled { opacity: 0.3; cursor: not-allowed; }
-  .btn-ghost {
-    border-color: var(--border); color: var(--text-muted);
-  }
-  .btn-ghost:hover { border-color: var(--text-muted); color: var(--text); background: transparent; }
+.hero-accent {
+  color: var(--accent);
+}
+[data-theme="light"] .hero-accent {
+  background: linear-gradient(135deg, #E8854A 0%, #D4607A 60%, #3CB89A 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-tagline {
+  font-size: 16px; color: var(--fg-muted); max-width: 480px;
+  margin: 0 auto; line-height: 1.75; position: relative;
+}
 
-  /* RESULT */
-  .quiz-result { text-align: center; }
-  .result-score-ring {
-    width: 120px; height: 120px; border-radius: 50%;
-    border: 2px solid var(--gold);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    margin: 0 auto 28px;
-  }
-  .result-score-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 48px; font-weight: 300; color: var(--gold); line-height: 1;
-  }
-  .result-score-label { font-size: 10px; letter-spacing: 0.15em; color: var(--text-muted); text-transform: uppercase; }
-  .result-level {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px; font-weight: 300; margin-bottom: 16px;
-  }
-  .result-desc { color: var(--text-muted); font-size: 15px; max-width: 440px; margin: 0 auto 28px; }
-  .result-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 28px; }
-  .result-tag {
-    padding: 6px 14px; border: 1px solid var(--border);
-    font-size: 12px; color: var(--text-muted); letter-spacing: 0.05em;
-  }
+/* ─── SECTIONS ─── */
+.library {
+  max-width: 1080px; margin: 0 auto;
+  padding: 48px 32px 100px;
+}
+.category { margin-bottom: 64px; }
+.category-eyebrow {
+  font-family: var(--font-body);
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--eyebrow-color); margin-bottom: 10px;
+  font-weight: 500; display: block;
+}
+.category-title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 600; color: var(--fg);
+  margin-bottom: 24px; line-height: 1.2;
+}
+[data-theme="light"] .category-title { font-weight: 500; }
+[data-theme="dark"] .category-title { font-weight: 300; letter-spacing: 0.02em; }
 
-  /* PRACTICES */
-  .practices-grid { display: flex; flex-direction: column; gap: 0; margin-top: 52px; }
-  .practice-item {
-    display: grid; grid-template-columns: 60px 1fr;
-    gap: 0 28px; padding: 36px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .practice-item:first-child { border-top: 1px solid var(--border); }
-  .practice-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 40px; font-weight: 300; color: var(--border);
-    line-height: 1; padding-top: 4px;
-    transition: color 0.3s;
-  }
-  .practice-item:hover .practice-num { color: var(--gold); }
-  .practice-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-weight: 400; color: var(--text);
-    margin-bottom: 8px; line-height: 1.3;
-  }
-  .practice-body { color: var(--text-muted); font-size: 14px; line-height: 1.8; }
-  .practice-tag {
-    display: inline-block; padding: 3px 10px; font-size: 11px;
-    border: 1px solid var(--sage); color: var(--sage);
-    letter-spacing: 0.08em; margin-top: 10px;
-  }
+/* ─── CARDS GRID ─── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
 
-  /* SETUP CHECKLIST */
-  .setup-wrap {
-    background: var(--bg-2); border: 1px solid var(--border);
-    padding: 48px; margin-top: 48px;
-  }
-  .setup-item {
-    display: flex; align-items: flex-start; gap: 18px;
-    padding: 22px 0; border-bottom: 1px solid var(--border);
-  }
-  .setup-item:last-child { border-bottom: none; }
-  .setup-check {
-    width: 24px; height: 24px; flex-shrink: 0;
-    border: 1px solid var(--border); border-radius: 50%;
-    cursor: pointer; transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center;
-    margin-top: 2px;
-  }
-  .setup-check:hover { border-color: var(--gold); }
-  .setup-check.checked {
-    background: var(--gold); border-color: var(--gold);
-  }
-  .setup-check.checked::after {
-    content: '✓'; color: var(--bg); font-size: 13px; font-weight: 600;
-  }
-  .setup-content { flex: 1; }
-  .setup-title {
-    font-size: 15px; color: var(--text); margin-bottom: 4px;
-    transition: color 0.2s, opacity 0.2s;
-  }
-  .setup-item.done .setup-title {
-    text-decoration: line-through; color: var(--text-muted); opacity: 0.6;
-  }
-  .setup-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 0; line-height: 1.6; }
-  .setup-action {
-    display: inline-flex; align-items: center; gap: 6px;
-    margin-top: 10px; font-size: 12px; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--gold); text-decoration: none;
-    border-bottom: 1px solid transparent; transition: border-color 0.2s;
-  }
-  .setup-action:hover { border-bottom-color: var(--gold); }
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  padding: 24px 22px 20px;
+  text-decoration: none;
+  display: flex; flex-direction: column; gap: 12px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--card-hover-border);
+  box-shadow: var(--shadow-raised);
+}
+[data-theme="fatih"] .card:hover { box-shadow: var(--shadow-raised), var(--accent-glow); }
 
-  /* 14-DAY GRID */
-  .grid-wrap {
-    background: var(--bg-2); border: 1px solid var(--border);
-    padding: 48px; margin-top: 48px; overflow-x: auto;
-  }
-  .grid-header-row {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 28px; flex-wrap: wrap; gap: 16px;
-  }
-  .grid-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 24px; font-weight: 300;
-  }
-  .streak-badge {
-    font-size: 12px; color: var(--gold); letter-spacing: 0.1em;
-    border: 1px solid var(--gold); padding: 6px 14px;
-  }
-  .checklist-table {
-    border-collapse: collapse; width: 100%; min-width: 760px;
-  }
-  .checklist-table th, .checklist-table td {
-    border: 1px solid var(--border); text-align: center;
-    padding: 0; height: 44px; width: 38px;
-  }
-  .checklist-table th {
-    font-size: 11px; font-weight: 400; color: var(--text-muted);
-    padding: 8px 4px;
-  }
-  .checklist-table th.day-col { font-size: 10px; }
-  .practice-label-cell {
-    text-align: left !important; padding: 10px 16px !important;
-    font-size: 13px; color: var(--text); width: auto; min-width: 220px;
-    position: sticky; left: 0; background: var(--bg-2);
-  }
-  .practice-label-cell .practice-emoji { margin-right: 8px; }
-  .day-cell {
-    cursor: pointer; transition: background 0.15s;
-  }
-  .day-cell:hover { background: rgba(201,168,76,0.08); }
-  .day-cell.checked { background: rgba(201,168,76,0.15); }
-  .day-cell.checked::after {
-    content: '✓'; color: var(--gold); font-size: 14px;
-  }
-  .day-cell.today { box-shadow: inset 0 0 0 1px var(--gold); }
-  .grid-controls {
-    display: flex; justify-content: flex-end; margin-top: 24px;
-  }
+.card.soon {
+  opacity: var(--soon-opacity);
+  cursor: default; pointer-events: none;
+}
 
-  /* CLOSING */
-  .closing {
-    text-align: center; padding: 120px 24px;
-    position: relative; overflow: hidden;
-  }
-  .closing-orb {
-    position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%);
-    width: 500px; height: 500px; border-radius: 50%;
-    background: radial-gradient(ellipse at center, rgba(122,140,114,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .closing h2 { margin-bottom: 16px; }
-  .arabic-close {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px; color: var(--gold); letter-spacing: 0.05em;
-    margin-top: 48px; opacity: 0.7;
-  }
-  .arabic-sub { font-size: 12px; color: var(--text-muted); margin-top: 6px; letter-spacing: 0.08em; }
+.card-icon {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--r-md);
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.card-icon svg { width: 20px; height: 20px; stroke-width: 1.75; }
 
-  /* FADE IN */
-  .fade-in {
-    opacity: 0; transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
+.card-body { flex: 1; }
+.card-title {
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 600;
+  color: var(--fg); margin-bottom: 5px; line-height: 1.3;
+}
+[data-theme="light"] .card-title { font-size: 16px; font-weight: 500; }
+[data-theme="dark"] .card-title { font-weight: 400; letter-spacing: 0.01em; }
 
-  /* RESPONSIVE */
-  @media (max-width: 640px) {
-    nav { padding: 16px 20px; }
-    .nav-links { display: none; }
-    section { padding: 72px 20px; }
-    .quiz-card, .setup-wrap, .grid-wrap { padding: 28px 20px; }
-    .practice-item { grid-template-columns: 40px 1fr; }
-  }
+.card-desc {
+  font-size: 12px; color: var(--fg-muted); line-height: 1.6;
+}
+
+.card-arrow {
+  display: flex; align-items: center; justify-content: flex-end;
+  color: var(--accent); opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.card:hover .card-arrow { opacity: 1; transform: translateX(2px); }
+.card-arrow svg { width: 14px; height: 14px; stroke-width: 2; }
+
+.soon-badge {
+  position: absolute; top: 14px; right: 14px;
+  font-family: var(--font-body);
+  font-size: 9px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  background: var(--bg-raised);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-full);
+  padding: 2px 8px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--border-soft);
+  padding: 28px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-name {
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: 600;
+  color: var(--fg-muted); letter-spacing: 0.06em;
+}
+.footer-credit {
+  font-size: 11px; color: var(--fg-muted);
+  letter-spacing: 0.04em;
+}
+.footer-credit a { color: var(--accent); text-decoration: none; }
+.footer-credit a:hover { text-decoration: underline; }
+
+/* ─── FADE IN ─── */
+.fade-in { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  nav { padding: 0 20px; }
+  .nav-logo-sub { display: none; }
+  .hero { padding: 110px 20px 60px; }
+  .library { padding: 32px 20px 80px; }
+  .cards { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  footer { padding: 20px; flex-direction: column; text-align: center; }
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#top">The Reset</a>
-  <ul class="nav-links">
-    <li><a href="#why">Why</a></li>
-    <li><a href="#quiz">Assess</a></li>
-    <li><a href="#practices">The Work</a></li>
-    <li><a href="#setup">Setup</a></li>
-    <li><a href="#checklist">Checklist</a></li>
-  </ul>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-mark">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3L20 7V13C20 17.4 16.4 21 12 22C7.6 21 4 17.4 4 13V7L12 3Z"/>
+        <path d="M12 8L15 10V14L12 16L9 14V10L12 8Z" stroke-width="1"/>
+      </svg>
+    </div>
+    <div>
+      <div class="nav-logo-text">FATIH</div>
+    </div>
+  </a>
+  <div class="theme-toggle">
+    <button data-theme-btn="light">Light</button>
+    <button data-theme-btn="dark">Dark</button>
+    <button data-theme-btn="fatih">Fatih</button>
+  </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="top">
+<div class="hero">
   <div class="hero-orb"></div>
-  <p class="hero-eyebrow">A guide to reclaiming your attention</p>
-  <h1>You are not <em>lazy.</em><br>You are overwhelmed.</h1>
-  <p class="hero-sub">Modern life has flooded your brain with more stimulation than it was ever designed to handle. Here is a way back.</p>
-  <a href="#why" class="hero-cta">Begin</a>
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-  </div>
-</section>
-
-<!-- WHY -->
-<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
-<section id="why" class="fade-in">
-  <span class="eyebrow">Understanding the problem</span>
-  <h2>Your brain has been rewired</h2>
-  <p>Every scroll, every notification, every quick video — each one releases a small hit of dopamine. Over time, your brain adapts by raising the threshold for what feels rewarding. <strong>This is not a character flaw. It is a biological response to an unnaturally stimulating environment.</strong></p>
-  <p>The result: normal activities — focused work, reading, exercise, prayer, stillness — feel painfully dull. Your brain has been conditioned to expect a hit every 15 seconds, and when it doesn't get one, it screams.</p>
-  
-  <blockquote>
-    <p>The soul that has grown accustomed to noise cannot hear the quiet call of its own purpose.</p>
-    <cite>— On the necessity of stillness</cite>
-  </blockquote>
-
-  <p>This is not about willpower. You cannot outwork a dysregulated nervous system. The solution is a <strong>reset</strong> — systematically lowering your baseline so that life itself becomes rewarding again.</p>
-</section>
-
-<!-- QUIZ -->
-<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
-<section id="quiz" class="fade-in">
-  <span class="eyebrow">Self-assessment</span>
-  <h2>How overstimulated are you?</h2>
-  <p>Answer honestly. No one is watching. These questions reveal where your nervous system currently sits.</p>
-
-  <div class="quiz-card">
-    <div id="quiz-container">
-      <div class="quiz-progress-bar">
-        <div class="quiz-progress-fill" id="quiz-progress" style="width:0%"></div>
-      </div>
-      <p class="quiz-question" id="quiz-question"></p>
-      <div class="quiz-options" id="quiz-options"></div>
-      <div class="quiz-nav">
-        <span class="quiz-counter" id="quiz-counter"></span>
-        <button class="btn" id="quiz-next" disabled>Next</button>
-      </div>
-    </div>
-    <div id="quiz-result" style="display:none" class="quiz-result"></div>
-  </div>
-</section>
-
-<!-- PRACTICES -->
-<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
-<section id="practices" class="fade-in">
-  <span class="eyebrow">The five practices</span>
-  <h2>What actually works</h2>
-  <p>These are not productivity hacks. They are a systematic unwinding of a conditioned brain. Each one builds on the last.</p>
-
-  <div class="practices-grid">
-    <div class="practice-item">
-      <div class="practice-num">01</div>
-      <div>
-        <div class="practice-title">The Morning Silence</div>
-        <div class="practice-body">Spend the first 30 minutes after waking doing nothing stimulating. No phone, no music, no content. Sit. Walk. Breathe. This is not meditation in the formal sense — it is simply refusing to let the first input of your day be someone else's agenda. Your brain will protest. Let it. Start with 10 minutes if you must.</div>
-        <span class="practice-tag">Daily · Morning</span>
-      </div>
-    </div>
-    <div class="practice-item">
-      <div class="practice-num">02</div>
-      <div>
-        <div class="practice-title">The One-Day Fast</div>
-        <div class="practice-body">Once a week, remove all high-dopamine inputs: no social media, no YouTube, no video games, no algorithmically-curated content. Replace with books, walks, real conversations, journaling, manual tasks. Your brain will throw everything at you to make you stop. That discomfort is the proof it is working.</div>
-        <span class="practice-tag">Weekly · Full Day</span>
-      </div>
-    </div>
-    <div class="practice-item">
-      <div class="practice-num">03</div>
-      <div>
-        <div class="practice-title">Boredom First</div>
-        <div class="practice-body">Before any reward — checking your phone, a snack, opening social media — you must first spend 10 minutes doing something boring. Stretch. Tidy your space. Sit. This retrains the deep pattern: reward follows effort, not the other way around. It reverses the conditioning at the root.</div>
-        <span class="practice-tag">Daily · Ongoing</span>
-      </div>
-    </div>
-    <div class="practice-item">
-      <div class="practice-num">04</div>
-      <div>
-        <div class="practice-title">Kill the Interruptions</div>
-        <div class="practice-body">Turn off every notification except direct calls. No badges. No red dots. No banners. Every ping is a tiny hijack of your attention, and attention is the one thing that cannot be recovered once spent. If you want to check something, make it an intentional act, not a reflexive one.</div>
-        <span class="practice-tag">One-time Setup</span>
-      </div>
-    </div>
-    <div class="practice-item">
-      <div class="practice-num">05</div>
-      <div>
-        <div class="practice-title">Exist in the Gap</div>
-        <div class="practice-body">Waiting in a queue? Just wait. Eating? Just eat. Walking? Just walk. Stop filling every empty moment with stimulation. These gaps are not wasted time — they are when your brain consolidates, when insight surfaces, when you remember what you actually think. Protect them.</div>
-        <span class="practice-tag">Daily · Ongoing</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SETUP -->
-<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
-<section id="setup" class="fade-in">
-  <span class="eyebrow">Step one — set up once</span>
-  <h2>Prepare your environment</h2>
-  <p>Before you can rely on willpower, remove the friction. These four actions take fifteen minutes total and do most of the work for you.</p>
-
-  <div class="setup-wrap" id="setup-wrap"></div>
-</section>
-
-<!-- 14-DAY CHECKLIST -->
-<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
-<section id="checklist" class="fade-in">
-  <span class="eyebrow">Step two — show up daily</span>
-  <h2>Your 14-day reset</h2>
-  <p>Tap a box each day you complete a practice. Don't aim for perfection — aim for consistency. Missing a day is fine. Missing two in a row is the thing to avoid.</p>
-
-  <div class="grid-wrap">
-    <div class="grid-header-row">
-      <div class="grid-title">Daily practices</div>
-      <div class="streak-badge" id="streak-badge">0 of 70 checked</div>
-    </div>
-    <table class="checklist-table" id="checklist-table"></table>
-    <div class="grid-controls">
-      <button class="btn btn-ghost" id="reset-checklist">Reset progress</button>
-    </div>
-  </div>
-</section>
-
-<!-- CLOSING -->
-<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
-<div class="closing fade-in">
-  <div class="closing-orb"></div>
-  <span class="eyebrow">A final word</span>
-  <h2>The first week is hard.<br>That is the point.</h2>
-  <p style="max-width:500px;margin:0 auto;color:var(--text-muted);">Around day 10, something shifts. Simple things become enjoyable again. Work doesn't feel like pulling teeth. You can sit with your own thoughts without needing to escape them. That is not a small thing — that is your life returning to you.</p>
-  <p class="arabic-close">وَاصْبِرْ وَمَا صَبْرُكَ إِلَّا بِاللَّهِ</p>
-  <p class="arabic-sub">Be patient — and your patience is only through Allah.</p>
+  <span class="hero-eyebrow">A library for the self</span>
+  <h1>Fatih <span class="hero-accent">Library</span></h1>
+  <p class="hero-tagline">Guides on mind, faith, healing, and productivity. Start where you are.</p>
 </div>
 
+<!-- LIBRARY -->
+<main class="library">
 
-<script>
-// ─── SCROLL FADE ───────────────────────────────────────────────
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  <!-- Mind & Focus -->
+  <div class="category fade-in">
+    <span class="category-eyebrow">Category 01</span>
+    <div class="category-title">Mind &amp; Focus</div>
+    <div class="cards">
 
-// ─── QUIZ ──────────────────────────────────────────────────────
-const questions = [
-  { q: "Do you reach for your phone within the first few minutes of waking up?", opts: ["Never","Sometimes","Most days","Every single day"], scores: [0,1,2,3] },
-  { q: "Can you sit in silence for 10 minutes without feeling restless or anxious?", opts: ["Easily","With some effort","It's quite uncomfortable","Impossible — I always reach for something"], scores: [0,1,2,3] },
-  { q: "Do simple tasks — reading, working, even eating — feel tediously slow?", opts: ["Rarely","Occasionally","Often","Almost always"], scores: [0,1,2,3] },
-  { q: "Do you need background content (videos, music, podcasts) to focus or relax?", opts: ["No, I prefer silence","Sometimes","Usually yes","Always — silence feels unbearable"], scores: [0,1,2,3] },
-  { q: "How long can you typically focus on one task without switching?", opts: ["60+ minutes","30–60 minutes","10–30 minutes","Less than 10 minutes"], scores: [0,1,2,3] },
-  { q: "When you feel bored or uncomfortable, what do you do first?", opts: ["Sit with it","Do something physical","Check my phone","Open an app without thinking"], scores: [0,1,2,3] },
-];
+      <a class="card" href="overstimulated/">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44l-1.66-7.23a2.5 2.5 0 0 1 .78-2.4L9.5 7V2Z" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44l1.66-7.23a2.5 2.5 0 0 0-.78-2.4L14.5 7V2Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Overstimulation</div>
+          <div class="card-desc">Reclaim your attention from a hijacked nervous system.</div>
+        </div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
 
-const levels = [
-  { name: "Grounded", desc: "Your nervous system is relatively balanced. You can tolerate discomfort and focus without constant stimulation. A few small adjustments and you'll be operating at a high level.", tags: ["Good baseline","Small refinements needed"], color: "var(--sage)" },
-  { name: "Fraying", desc: "You've built some habits around stimulation but can still tolerate discomfort. A focused reset week will make a significant difference to your clarity and focus.", tags: ["Mild overstimulation","1-week reset recommended"], color: "var(--gold)" },
-  { name: "Overstimulated", desc: "Your brain is running hot. Starting new habits feels like torture, focus is fragmented, and silence feels unsafe. A reset is not optional — it's urgent. The good news: two weeks can change everything.", tags: ["Significant rewiring needed","Start with Morning Silence"], color: "var(--danger)" },
-  { name: "Overloaded", desc: "You're deep in it. Your baseline for stimulation is so high that normal life feels impossibly dull. This is not who you are — it's the result of years of conditioning. The path back exists. Start with one thing: the morning silence.", tags: ["Full reset required","Start today, not tomorrow"], color: "var(--danger)" },
-];
-
-let currentQ = 0, answers = [], selectedIdx = null;
-
-function renderQuestion() {
-  const q = questions[currentQ];
-  document.getElementById('quiz-question').textContent = q.q;
-  document.getElementById('quiz-counter').textContent = `${currentQ + 1} of ${questions.length}`;
-  document.getElementById('quiz-progress').style.width = `${(currentQ / questions.length) * 100}%`;
-  const opts = document.getElementById('quiz-options');
-  opts.innerHTML = '';
-  selectedIdx = null;
-  document.getElementById('quiz-next').disabled = true;
-  q.opts.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'quiz-option';
-    btn.textContent = opt;
-    btn.onclick = () => {
-      opts.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      selectedIdx = i;
-      document.getElementById('quiz-next').disabled = false;
-    };
-    opts.appendChild(btn);
-  });
-}
-
-function showResult() {
-  document.getElementById('quiz-container').style.display = 'none';
-  const total = answers.reduce((a, b) => a + b, 0);
-  const max = questions.length * 3;
-  const pct = Math.round((total / max) * 100);
-  const lvlIdx = pct < 25 ? 0 : pct < 50 ? 1 : pct < 75 ? 2 : 3;
-  const lvl = levels[lvlIdx];
-  const res = document.getElementById('quiz-result');
-  res.style.display = 'block';
-  res.innerHTML = `
-    <div class="result-score-ring" style="border-color:${lvl.color}">
-      <div class="result-score-num" style="color:${lvl.color}">${pct}</div>
-      <div class="result-score-label">/ 100</div>
-    </div>
-    <div class="result-level">${lvl.name}</div>
-    <div class="result-desc">${lvl.desc}</div>
-    <div class="result-tags">${lvl.tags.map(t => `<span class="result-tag">${t}</span>`).join('')}</div>
-    <button class="btn" onclick="location.href='#practices'">See the practices →</button>
-    <br><br>
-    <button class="btn btn-ghost" onclick="retakeQuiz()">Retake quiz</button>
-  `;
-}
-
-function retakeQuiz() {
-  currentQ = 0; answers = [];
-  document.getElementById('quiz-result').style.display = 'none';
-  document.getElementById('quiz-container').style.display = 'block';
-  renderQuestion();
-}
-
-document.getElementById('quiz-next').onclick = () => {
-  if (selectedIdx === null) return;
-  answers.push(questions[currentQ].scores[selectedIdx]);
-  currentQ++;
-  if (currentQ >= questions.length) { showResult(); }
-  else renderQuestion();
-};
-
-renderQuestion();
-
-// ─── SETUP CHECKLIST ──────────────────────────────────────────
-function gcalLink() {
-  // Find next occurrence of given weekday (0=Sun..6=Sat), default Sunday
-  const now = new Date();
-  const target = 0; // Sunday
-  let d = new Date(now);
-  d.setDate(now.getDate() + ((target + 7 - now.getDay()) % 7 || 7));
-  const fmt = (date) => date.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
-  const start = new Date(d); start.setHours(0,0,0,0);
-  const end = new Date(d); end.setHours(23,59,59,0);
-  const params = new URLSearchParams({
-    action: 'TEMPLATE',
-    text: 'Dopamine Fast Day — no socials, no YouTube',
-    dates: `${fmt(start)}/${fmt(end)}`,
-    details: 'A full day with no social media, no YouTube, no video games. Books, walks, journaling, real conversations only.',
-  });
-  return `https://calendar.google.com/calendar/render?${params.toString()}`;
-}
-
-const setupItems = [
-  {
-    id: 'dnd',
-    title: 'Schedule phone Do Not Disturb for the morning',
-    desc: 'Set a recurring Do Not Disturb (or Focus mode) from when you wake up until 30–60 minutes later. This protects your morning silence automatically — no willpower required.',
-    action: null,
-  },
-  {
-    id: 'fastday',
-    title: 'Block one day this week as your fast day',
-    desc: 'Pick a day with the lightest schedule. Add it to your calendar now so it\'s protected before the week fills up.',
-    action: { label: 'Add to Google Calendar', href: gcalLink() },
-  },
-  {
-    id: 'notifications',
-    title: 'Turn off non-essential notifications',
-    desc: 'Go into your phone settings and disable badges, banners, and sounds for every app except calls and messages. This alone removes most of the daily pull.',
-    action: null,
-  },
-  {
-    id: 'accountability',
-    title: 'Tell someone what you\'re doing',
-    desc: 'Send a message to a friend, spouse, or family member. Let them know you\'re doing a 14-day reset — accountability makes it real.',
-    action: null,
-  },
-];
-
-function loadSetup() {
-  const saved = JSON.parse(localStorage.getItem('reset-setup') || '{}');
-  const wrap = document.getElementById('setup-wrap');
-  wrap.innerHTML = '';
-  setupItems.forEach(item => {
-    const done = !!saved[item.id];
-    const el = document.createElement('div');
-    el.className = 'setup-item' + (done ? ' done' : '');
-    el.innerHTML = `
-      <div class="setup-check ${done ? 'checked' : ''}" data-id="${item.id}"></div>
-      <div class="setup-content">
-        <div class="setup-title">${item.title}</div>
-        <p class="setup-desc">${item.desc}</p>
-        ${item.action ? `<a class="setup-action" href="${item.action.href}" target="_blank" rel="noopener">${item.action.label} →</a>` : ''}
+      <div class="card soon">
+        <span class="soon-badge">Soon</span>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Deep Work</div>
+          <div class="card-desc">Build the capacity for sustained, undistracted focus.</div>
+        </div>
       </div>
-    `;
-    wrap.appendChild(el);
-  });
-  wrap.querySelectorAll('.setup-check').forEach(box => {
-    box.onclick = () => {
-      const id = box.dataset.id;
-      const data = JSON.parse(localStorage.getItem('reset-setup') || '{}');
-      data[id] = !data[id];
-      localStorage.setItem('reset-setup', JSON.stringify(data));
-      loadSetup();
-    };
-  });
-}
-loadSetup();
 
-// ─── 14-DAY CHECKLIST ─────────────────────────────────────────
-const PRACTICES = [
-  { id: 'silence', emoji: '🌅', label: 'Morning silence (30 min, no inputs)' },
-  { id: 'boredom', emoji: '⏳', label: 'Boredom before reward' },
-  { id: 'notifications', emoji: '🔕', label: 'Notifications stayed off' },
-  { id: 'gap', emoji: '⏸', label: 'Existed in the gap (no filler)' },
-  { id: 'scrolling', emoji: '📵', label: 'No mindless scrolling' },
-];
+      <div class="card soon">
+        <span class="soon-badge">Soon</span>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01" stroke-linecap="round"/><path d="M8 6h8M8 10h8M8 14h4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Digital Detox</div>
+          <div class="card-desc">A structured exit from compulsive screen use.</div>
+        </div>
+      </div>
 
-function loadChecklist() {
-  const saved = JSON.parse(localStorage.getItem('reset-checklist') || '{}');
-  const table = document.getElementById('checklist-table');
-  table.innerHTML = '';
+    </div>
+  </div>
 
-  // header row
-  const thead = document.createElement('tr');
-  thead.innerHTML = '<th class="practice-label-cell">Practice</th>' +
-    Array.from({length: 14}, (_, i) => `<th class="day-col">Day<br>${i+1}</th>`).join('');
-  table.appendChild(thead);
+  <!-- Faith & Islam -->
+  <div class="category fade-in">
+    <span class="category-eyebrow">Category 02</span>
+    <div class="category-title">Faith &amp; Islam</div>
+    <div class="cards">
 
-  PRACTICES.forEach(practice => {
-    const row = document.createElement('tr');
-    row.innerHTML = `<td class="practice-label-cell"><span class="practice-emoji">${practice.emoji}</span>${practice.label}</td>`;
-    for (let day = 1; day <= 14; day++) {
-      const key = `${practice.id}-${day}`;
-      const checked = !!saved[key];
-      const td = document.createElement('td');
-      td.className = 'day-cell' + (checked ? ' checked' : '');
-      td.dataset.key = key;
-      row.appendChild(td);
-    }
-    table.appendChild(row);
-  });
+      <div class="card soon">
+        <span class="soon-badge">Soon</span>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Prayer Consistency</div>
+          <div class="card-desc">Rebuild the habit of salah without guilt.</div>
+        </div>
+      </div>
 
-  table.querySelectorAll('.day-cell').forEach(cell => {
-    cell.onclick = () => {
-      const data = JSON.parse(localStorage.getItem('reset-checklist') || '{}');
-      const key = cell.dataset.key;
-      data[key] = !data[key];
-      localStorage.setItem('reset-checklist', JSON.stringify(data));
-      cell.classList.toggle('checked');
-      updateStreakBadge();
-    };
-  });
+      <div class="card soon">
+        <span class="soon-badge">Soon</span>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Gratitude</div>
+          <div class="card-desc">Shukr as a practice, not a feeling.</div>
+        </div>
+      </div>
 
-  updateStreakBadge();
-}
+      <div class="card soon">
+        <span class="soon-badge">Soon</span>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Tawakkul</div>
+          <div class="card-desc">Act fully. Then release the outcome to Allah.</div>
+        </div>
+      </div>
 
-function updateStreakBadge() {
-  const data = JSON.parse(localStorage.getItem('reset-checklist') || '{}');
-  const total = Object.values(data).filter(Boolean).length;
-  document.getElementById('streak-badge').textContent = `${total} of 70 checked`;
-}
+    </div>
+  </div>
 
-document.getElementById('reset-checklist').onclick = () => {
-  if (confirm('Clear all checklist progress? This cannot be undone.')) {
-    localStorage.removeItem('reset-checklist');
-    loadChecklist();
-  }
-};
+  <!-- Healing & Emotion -->
+  <div class="category fade-in">
+    <span class="category-eyebrow">Category 03</span>
+    <div class="category-title">Healing &amp; Emotion</div>
+    <div class="cards">
 
-loadChecklist();
+      <div class="card soon">
+        <span class="soon-badge">Soon</span>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Anxiety</div>
+          <div class="card-desc">Understand what your nervous system is trying to say.</div>
+        </div>
+      </div>
+
+      <div class="card soon">
+        <span class="soon-badge">Soon</span>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18M3 6h18M3 18h18" stroke-linecap="round"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Grief</div>
+          <div class="card-desc">How to move through loss without bypassing it.</div>
+        </div>
+      </div>
+
+      <div class="card soon">
+        <span class="soon-badge">Soon</span>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Overthinking</div>
+          <div class="card-desc">Break the loop. Get out of your own head.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Productivity -->
+  <div class="category fade-in">
+    <span class="category-eyebrow">Category 04</span>
+    <div class="category-title">Productivity</div>
+    <div class="cards">
+
+      <div class="card soon">
+        <span class="soon-badge">Soon</span>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Morning Routine</div>
+          <div class="card-desc">Own the first hour before the world does.</div>
+        </div>
+      </div>
+
+      <div class="card soon">
+        <span class="soon-badge">Soon</span>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Energy Management</div>
+          <div class="card-desc">Work with your biology, not against it.</div>
+        </div>
+      </div>
+
+      <div class="card soon">
+        <span class="soon-badge">Soon</span>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Rest</div>
+          <div class="card-desc">Rest is not a reward. It is part of the work.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Fatih Library</div>
+  <div class="footer-credit">Built on the <a href="#">Fatih Design System</a></div>
+</footer>
+
+<script src="assets/theme.js"></script>
+<script>
+  // Scroll fade
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
