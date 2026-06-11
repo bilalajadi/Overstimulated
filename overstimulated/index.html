@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Reset — Reclaim Your Mind</title>
+<title>The Reset: Reclaim Your Mind</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Josefin+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Scheherazade+New:wght@400;500&display=swap" rel="stylesheet">
 <script>
-  (function(){var t=localStorage.getItem('fatih-lib-theme');document.documentElement.setAttribute('data-theme',['light','dark','fatih'].includes(t)?t:'light');})();
+  (function(){var t=localStorage.getItem('fatih-lib-theme');document.documentElement.setAttribute('data-theme',['light','dark','medieval','fatih'].includes(t)?t:'light');})();
 </script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -74,8 +74,48 @@
     --font-ui: 'DM Sans', system-ui, sans-serif;
   }
 
-  /* ── DARK THEME ── */
+  /* ── DARK THEME (same structure as Light, dark colours) ── */
   [data-theme="dark"] {
+    --brand-orange: #C9A84C;
+    --brand-orange-soft: rgba(201,168,76,0.08);
+    --brand-orange-border: rgba(201,168,76,0.22);
+    --brand-orange-strong: #a8863a;
+    --brand-coral: #C9A84C;
+    --brand-teal: #7A8C72;
+    --brand-teal-soft: rgba(122,140,114,0.08);
+    --brand-teal-border: rgba(122,140,114,0.22);
+    --brand-gradient: linear-gradient(135deg, #C9A84C 0%, #a8863a 100%);
+    --bg1: #0E0F0D;
+    --bg2: #1E2019;
+    --cream: #0E0F0D;
+    --card: #161713;
+    --fg1: #F0EDE6;
+    --fg2: #b8b4ad;
+    --fg3: #8A8A7E;
+    --fg4: #5a5a52;
+    --border: #2A2B27;
+    --border-soft: #222320;
+    --border-strong: #3a3b37;
+    --shadow-1: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-2: 0 2px 8px rgba(0,0,0,0.4);
+    --shadow-3: 0 4px 14px rgba(0,0,0,0.5);
+    --shadow-4: 0 14px 40px rgba(0,0,0,0.6);
+    --r-sm: 8px; --r-md: 10px; --r-lg: 14px; --r-xl: 20px;
+    --accent: var(--brand-orange);
+    --accent-soft: var(--brand-orange-soft);
+    --accent-border: var(--brand-orange-border);
+    --text: var(--fg1);
+    --text-muted: var(--fg3);
+    --bg: var(--bg1);
+    --bg-2: var(--card);
+    --radius: var(--r-md);
+    --nav-bg: rgba(14,15,13,0.95);
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-ui: 'DM Sans', system-ui, sans-serif;
+  }
+
+  /* ── MEDIEVAL THEME (editorial dark) ── */
+  [data-theme="medieval"] {
     --brand-orange: #C9A84C;
     --brand-orange-soft: rgba(201,168,76,0.08);
     --brand-orange-border: rgba(201,168,76,0.22);
@@ -195,7 +235,7 @@
     position: absolute; left: 50%; transform: translateX(-50%);
   }
   [data-theme="fatih"] .nav-logo { font-weight: 600; letter-spacing: 0.08em; font-size: 15px; }
-  [data-theme="dark"] .nav-logo { font-weight: 300; letter-spacing: 0.12em; }
+  [data-theme="medieval"] .nav-logo { font-weight: 300; letter-spacing: 0.12em; }
   .nav-logo span {
     background: var(--brand-gradient);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -637,6 +677,7 @@
     <div class="theme-toggle">
       <button data-theme-btn="light">Light</button>
       <button data-theme-btn="dark">Dark</button>
+      <button data-theme-btn="medieval">Medieval</button>
       <button data-theme-btn="fatih">Fatih</button>
     </div>
   </div>
@@ -660,14 +701,14 @@
   <span class="eyebrow">Understanding the problem</span>
   <h2>Your brain has been rewired</h2>
   <p>Every scroll, every notification, every quick video — each one releases a small hit of dopamine. Over time, your brain adapts by raising the threshold for what feels rewarding. <strong>This is not a character flaw. It is a biological response to an unnaturally stimulating environment.</strong></p>
-  <p>The result: normal activities — focused work, reading, exercise, prayer, stillness — feel painfully dull. Your brain has been conditioned to expect a hit every 15 seconds, and when it doesn't get one, it screams.</p>
+  <p>The result: normal activities, including focused work, reading, exercise, prayer, and stillness, feel painfully dull. Your brain has been conditioned to expect a hit every 15 seconds, and when it doesn't get one, it screams.</p>
   
   <blockquote>
     <p>The soul that has grown accustomed to noise cannot hear the quiet call of its own purpose.</p>
-    <cite>— On the necessity of stillness</cite>
+    <cite>On the necessity of stillness</cite>
   </blockquote>
 
-  <p>This is not about willpower. You cannot outwork a dysregulated nervous system. The solution is a <strong>reset</strong> — systematically lowering your baseline so that life itself becomes rewarding again.</p>
+  <p>This is not about willpower. You cannot outwork a dysregulated nervous system. The solution is a <strong>reset</strong>: systematically lowering your baseline so that life itself becomes rewarding again.</p>
 </section>
 
 <!-- QUIZ -->
@@ -887,7 +928,7 @@ function gcalLink() {
   const end = new Date(d); end.setHours(23,59,59,0);
   const params = new URLSearchParams({
     action: 'TEMPLATE',
-    text: 'Dopamine Fast Day — no socials, no YouTube',
+    text: 'Dopamine Fast Day: no socials, no YouTube',
     dates: `${fmt(start)}/${fmt(end)}`,
     details: 'A full day with no social media, no YouTube, no video games. Books, walks, journaling, real conversations only.',
   });

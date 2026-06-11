@@ -1,5 +1,5 @@
 (function () {
-  var THEMES = ['light', 'dark', 'fatih'];
+  var THEMES = ['light', 'dark', 'medieval', 'fatih'];
   var KEY = 'fatih-lib-theme';
 
   function apply(theme) {

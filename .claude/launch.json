@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "overstimulated",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "3000", "C:\\Users\\Bilal\\Documents\\Overstimulated"],
+      "port": 3000
+    }
+  ]
+}
