@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On Difficulty — Fatih Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Josefin+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Scheherazade+New:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){var t=localStorage.getItem('fatih-lib-theme');document.documentElement.setAttribute('data-theme',['light','dark','medieval','fatih'].includes(t)?t:'light');})();</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── LIGHT (default) ── */
+:root, [data-theme="light"] {
+  --bg: #f9f8f4; --bg-2: #ffffff; --bg-3: #f1f0eb; --cream: #faf8f0;
+  --fg1: #1a1a18; --fg2: #4a4a42; --fg3: #8a8a80; --fg4: #b0b0a4;
+  --accent: #E8854A; --accent-soft: rgba(232,133,74,.08); --accent-border: rgba(232,133,74,.20); --accent-strong: #C56A35;
+  --teal: #3CB89A; --teal-soft: rgba(60,184,154,.08); --teal-border: rgba(60,184,154,.22);
+  --gold: #c8a84e; --gold-soft: rgba(200,168,78,.08); --gold-border: rgba(200,168,78,.22);
+  --gradient: linear-gradient(135deg,#E8854A 0%,#D4607A 40%,#3CB89A 75%,#7B6BAE 100%);
+  --border: #e6e5de; --border-soft: #eeedea; --border-strong: #d4d3cb;
+  --shadow-1: 0 1px 3px rgba(0,0,0,.04); --shadow-2: 0 2px 8px rgba(0,0,0,.04);
+  --shadow-3: 0 4px 14px rgba(0,0,0,.06); --shadow-4: 0 14px 40px rgba(0,0,0,.10);
+  --r-sm:8px; --r-md:10px; --r-lg:14px; --r-xl:16px; --r-full:999px;
+  --ease: cubic-bezier(0.16,1,0.3,1);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-ui: 'DM Sans', system-ui, sans-serif;
+  --font-arabic: 'Scheherazade New', Georgia, serif;
+  --nav-bg: rgba(249,248,244,0.92);
+  --eyebrow: var(--teal);
+  --text: var(--fg1); --text-muted: var(--fg3);
+}
+
+/* ── DARK ── */
+[data-theme="dark"] {
+  --bg:#0E0F0D; --bg-2:#161713; --bg-3:#1E2019; --cream:#0E0F0D;
+  --fg1:#F0EDE6; --fg2:#b8b4ad; --fg3:#8A8A7E; --fg4:#5a5a52;
+  --accent:#C9A84C; --accent-soft:rgba(201,168,76,.08); --accent-border:rgba(201,168,76,.22); --accent-strong:#a8863a;
+  --teal:#7A8C72; --teal-soft:rgba(122,140,114,.08); --teal-border:rgba(122,140,114,.22);
+  --gold:#C9A84C; --gold-soft:rgba(201,168,76,.08); --gold-border:rgba(201,168,76,.22);
+  --gradient:linear-gradient(135deg,#C9A84C 0%,#a8863a 100%);
+  --border:#2A2B27; --border-soft:#222320; --border-strong:#3a3b37;
+  --shadow-1:0 1px 3px rgba(0,0,0,.3); --shadow-2:0 2px 8px rgba(0,0,0,.4);
+  --shadow-3:0 4px 14px rgba(0,0,0,.5); --shadow-4:0 14px 40px rgba(0,0,0,.6);
+  --r-sm:8px; --r-md:10px; --r-lg:14px; --r-xl:16px; --r-full:999px;
+  --font-display:'Playfair Display',Georgia,serif; --font-ui:'DM Sans',system-ui,sans-serif;
+  --nav-bg:rgba(14,15,13,0.95); --eyebrow:#7A8C72;
+  --text:var(--fg1); --text-muted:var(--fg3);
+}
+
+/* ── MEDIEVAL ── */
+[data-theme="medieval"] {
+  --bg:#0E0F0D; --bg-2:#161713; --bg-3:#1E2019; --cream:#0E0F0D;
+  --fg1:#F0EDE6; --fg2:#b8b4ad; --fg3:#8A8A7E; --fg4:#5a5a52;
+  --accent:#C9A84C; --accent-soft:rgba(201,168,76,.08); --accent-border:rgba(201,168,76,.22); --accent-strong:#a8863a;
+  --teal:#7A8C72; --teal-soft:rgba(122,140,114,.08); --teal-border:rgba(122,140,114,.22);
+  --gold:#C9A84C; --gold-soft:rgba(201,168,76,.08); --gold-border:rgba(201,168,76,.22);
+  --gradient:linear-gradient(135deg,#C9A84C 0%,#a8863a 100%);
+  --border:#2A2B27; --border-soft:#222320; --border-strong:#3a3b37;
+  --shadow-1:0 1px 3px rgba(0,0,0,.3); --shadow-2:0 2px 8px rgba(0,0,0,.4);
+  --shadow-3:0 4px 14px rgba(0,0,0,.5); --shadow-4:0 14px 40px rgba(0,0,0,.6);
+  --r-sm:4px; --r-md:6px; --r-lg:8px; --r-xl:10px; --r-full:999px;
+  --font-display:'Cormorant Garamond',Georgia,serif; --font-ui:'Inter',system-ui,sans-serif;
+  --nav-bg:rgba(14,15,13,0.95); --eyebrow:#7A8C72;
+  --text:var(--fg1); --text-muted:var(--fg3);
+}
+
+/* ── FATIH ── */
+[data-theme="fatih"] {
+  --bg:#0B1120; --bg-2:#162035; --bg-3:#1C2840; --cream:#0B1120;
+  --fg1:#EDF1F5; --fg2:rgba(237,241,245,.75); --fg3:rgba(237,241,245,.52); --fg4:rgba(237,241,245,.28);
+  --accent:#3BBFCC; --accent-soft:rgba(59,191,204,.10); --accent-border:rgba(59,191,204,.20); --accent-strong:#2a9aa8;
+  --teal:#2ABFAA; --teal-soft:rgba(42,191,170,.08); --teal-border:rgba(42,191,170,.22);
+  --gold:#C9973A; --gold-soft:rgba(201,151,58,.10); --gold-border:rgba(201,151,58,.22);
+  --gradient:linear-gradient(135deg,#3BBFCC 0%,#2ABFAA 100%);
+  --border:rgba(59,191,204,.14); --border-soft:rgba(237,241,245,.07); --border-strong:rgba(59,191,204,.25);
+  --shadow-1:0 1px 3px rgba(0,0,0,.3); --shadow-2:0 2px 12px rgba(0,0,0,.35);
+  --shadow-3:0 4px 24px rgba(0,0,0,.5); --shadow-4:0 14px 40px rgba(0,0,0,.65);
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:24px; --r-full:999px;
+  --font-display:'Josefin Sans',sans-serif; --font-ui:'DM Sans',system-ui,sans-serif;
+  --nav-bg:rgba(11,17,32,0.92); --eyebrow:var(--accent);
+  --text:var(--fg1); --text-muted:var(--fg3);
+}
+
+::selection { background: var(--accent-soft); color: var(--accent-strong); }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg); color: var(--fg1);
+  font-family: var(--font-ui); font-size: 16px;
+  line-height: 1.7; overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background .3s ease, color .3s ease;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 48px; height: 60px;
+  background: var(--nav-bg); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-soft);
+  transition: background .3s ease;
+}
+.nav-back {
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none; color: var(--fg3);
+  font-size: 13px; font-weight: 500; transition: color .2s;
+  flex-shrink: 0;
+}
+.nav-back:hover { color: var(--fg1); }
+.nav-back svg { width:14px; height:14px; stroke-width:2; }
+.nav-back-logo { width:24px; height:24px; border-radius:5px; overflow:hidden; flex-shrink:0; }
+.nav-back-logo img { width:100%; height:100%; object-fit:cover; display:block; }
+.nav-back-logo .logo-light { display:none; }
+[data-theme="light"] .nav-back-logo .logo-dark { display:none; }
+[data-theme="light"] .nav-back-logo .logo-light { display:block; }
+
+.nav-title {
+  position:absolute; left:50%; transform:translateX(-50%);
+  font-family: var(--font-display); font-size:15px; font-weight:500;
+  color:var(--fg1); white-space:nowrap;
+}
+[data-theme="fatih"] .nav-title { font-weight:600; letter-spacing:.06em; font-size:14px; }
+[data-theme="medieval"] .nav-title { font-weight:300; letter-spacing:.08em; }
+
+.nav-right { display:flex; align-items:center; gap:12px; flex-shrink:0; }
+
+/* Theme toggle */
+.theme-toggle {
+  display:flex; gap:2px;
+  background:var(--bg-2); border:1px solid var(--border-soft);
+  border-radius:var(--r-full); padding:3px;
+}
+.theme-toggle button {
+  background:transparent; border:none; cursor:pointer;
+  padding:5px 10px; border-radius:var(--r-full);
+  font-family:var(--font-ui); font-size:11px; font-weight:500;
+  letter-spacing:.06em; text-transform:uppercase;
+  color:var(--fg3); transition:background .18s ease, color .18s ease;
+  white-space:nowrap;
+}
+.theme-toggle button.active { background:var(--accent); color:var(--bg); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 70vh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; padding:120px 24px 80px;
+  position:relative; overflow:hidden;
+  background:var(--cream);
+}
+.hero-orb {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:600px; height:600px; border-radius:50%; pointer-events:none; opacity:.6;
+}
+[data-theme="light"] .hero-orb { background:radial-gradient(ellipse at center,rgba(200,168,78,.10) 0%,rgba(60,184,154,.05) 50%,transparent 70%); }
+[data-theme="dark"] .hero-orb,
+[data-theme="medieval"] .hero-orb { background:radial-gradient(ellipse at center,rgba(201,168,76,.06) 0%,transparent 65%); }
+[data-theme="fatih"] .hero-orb { background:radial-gradient(ellipse at center,rgba(201,151,58,.08) 0%,rgba(59,191,204,.04) 50%,transparent 70%); }
+
+.hero-meta {
+  font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--fg3); margin-bottom:16px; font-weight:500; position:relative;
+}
+.hero-eyebrow {
+  font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--eyebrow); margin-bottom:20px; font-weight:500; position:relative;
+}
+.hero h1 {
+  font-family:var(--font-display);
+  font-size:clamp(52px,10vw,96px);
+  font-weight:500; line-height:1.05; letter-spacing:-.02em;
+  color:var(--fg1); margin-bottom:24px; position:relative;
+}
+[data-theme="medieval"] .hero h1 { font-weight:300; }
+[data-theme="fatih"] .hero h1 { font-weight:600; letter-spacing:-.01em; }
+
+.hero-sub {
+  font-size:17px; color:var(--fg2); max-width:520px;
+  line-height:1.8; position:relative;
+}
+
+/* ── SECTIONS ── */
+section { padding:88px 24px; max-width:760px; margin:0 auto; }
+
+.divider {
+  display:flex; align-items:center; gap:16px;
+  max-width:760px; margin:0 auto 0; padding:0 24px;
+}
+.divider-line { flex:1; height:1px; background:var(--border); }
+.divider-gem {
+  width:7px; height:7px; transform:rotate(45deg); flex-shrink:0;
+  background:var(--gradient); border-radius:1px;
+}
+
+.eyebrow {
+  font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--eyebrow); margin-bottom:14px; display:block; font-weight:500;
+}
+h2 {
+  font-family:var(--font-display);
+  font-size:clamp(30px,4.5vw,48px);
+  font-weight:500; line-height:1.12; color:var(--fg1); margin-bottom:20px;
+}
+[data-theme="medieval"] h2 { font-weight:300; }
+[data-theme="fatih"] h2 { font-weight:600; }
+p { color:var(--fg2); margin-bottom:18px; font-size:16px; line-height:1.8; }
+p strong { color:var(--fg1); font-weight:500; }
+[data-theme="medieval"] p strong { font-weight:400; }
+
+blockquote {
+  border-left:3px solid var(--accent);
+  padding:18px 0 18px 28px; margin:32px 0;
+  background:var(--accent-soft);
+  border-radius:0 var(--r-md) var(--r-md) 0;
+}
+blockquote p {
+  font-family:var(--font-display); font-size:20px; font-style:italic;
+  color:var(--fg1); font-weight:400; line-height:1.55; margin:0;
+}
+blockquote cite { font-size:12px; color:var(--fg3); margin-top:10px; display:block; font-style:normal; letter-spacing:.04em; }
+
+/* ── PERSPECTIVES (numbered list) ── */
+.lessons { margin-top:48px; }
+.lesson-item {
+  display:grid; grid-template-columns:52px 1fr;
+  gap:0 24px; padding:32px 0;
+  border-bottom:1px solid var(--border);
+}
+.lesson-item:first-child { border-top:1px solid var(--border); }
+.lesson-num {
+  font-family:var(--font-display); font-size:36px; font-weight:400;
+  color:var(--border-strong); line-height:1; padding-top:4px;
+  transition:color .3s;
+}
+[data-theme="dark"] .lesson-num,
+[data-theme="medieval"] .lesson-num { color:var(--border); }
+.lesson-item:hover .lesson-num { color:var(--accent); }
+.lesson-title {
+  font-family:var(--font-display); font-size:21px; font-weight:500;
+  color:var(--fg1); margin-bottom:10px; line-height:1.3;
+}
+[data-theme="medieval"] .lesson-title { font-weight:400; }
+.lesson-body { color:var(--fg2); font-size:15px; line-height:1.85; }
+.lesson-tag {
+  display:inline-block; padding:3px 12px; font-size:11px; font-weight:500;
+  background:var(--teal-soft); border:1px solid var(--teal-border); color:var(--teal);
+  border-radius:var(--r-full); letter-spacing:.04em; margin-top:12px;
+}
+
+/* ── PRACTICE CHECKLIST ── */
+.practice-wrap {
+  background:var(--bg-2); border:1px solid var(--border);
+  border-radius:var(--r-xl); padding:40px; margin-top:48px;
+  box-shadow:var(--shadow-2);
+}
+.practice-wrap h3 {
+  font-family:var(--font-display); font-size:22px; font-weight:500;
+  color:var(--fg1); margin-bottom:8px;
+}
+[data-theme="medieval"] .practice-wrap h3 { font-weight:300; }
+.practice-intro { font-size:14px; color:var(--fg3); margin-bottom:28px; line-height:1.6; }
+.practice-item {
+  display:flex; align-items:flex-start; gap:16px;
+  padding:18px 0; border-bottom:1px solid var(--border-soft);
+}
+.practice-item:last-child { border-bottom:none; padding-bottom:0; }
+.practice-check {
+  width:22px; height:22px; flex-shrink:0;
+  border:1.5px solid var(--border-strong); border-radius:50%;
+  cursor:pointer; transition:all .2s; margin-top:2px;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--bg);
+}
+.practice-check:hover { border-color:var(--accent); background:var(--accent-soft); }
+.practice-check.checked { background:var(--teal); border-color:var(--teal); }
+.practice-check.checked::after { content:'✓'; color:#fff; font-size:12px; font-weight:600; }
+.practice-content { flex:1; }
+.practice-title {
+  font-size:15px; font-weight:500; color:var(--fg1); margin-bottom:5px;
+  transition:opacity .2s;
+}
+.practice-item.done .practice-title { text-decoration:line-through; opacity:.5; }
+.practice-desc { font-size:13px; color:var(--fg3); line-height:1.65; }
+
+/* ── CLOSING ── */
+.closing {
+  text-align:center; padding:100px 24px;
+  position:relative; overflow:hidden;
+  background:var(--cream);
+}
+.closing-orb {
+  position:absolute; bottom:-80px; left:50%; transform:translateX(-50%);
+  width:500px; height:500px; border-radius:50%; pointer-events:none;
+}
+[data-theme="light"] .closing-orb { background:radial-gradient(ellipse at center,rgba(60,184,154,.07) 0%,transparent 65%); }
+[data-theme="dark"] .closing-orb,
+[data-theme="medieval"] .closing-orb { background:radial-gradient(ellipse at center,rgba(201,168,76,.05) 0%,transparent 65%); }
+[data-theme="fatih"] .closing-orb { background:radial-gradient(ellipse at center,rgba(59,191,204,.06) 0%,transparent 65%); }
+.closing h2 { margin-bottom:16px; }
+.arabic-close {
+  font-family:var(--font-arabic); font-size:24px; color:var(--accent);
+  margin-top:48px; direction:rtl; line-height:1.8; opacity:.85;
+}
+.arabic-sub { font-size:13px; color:var(--fg3); margin-top:10px; font-style:italic; line-height:1.7; }
+
+/* ── FADE IN ── */
+.fade-in { opacity:0; transform:translateY(14px); transition:opacity .55s ease,transform .55s ease; }
+.fade-in.visible { opacity:1; transform:none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:640px) {
+  nav { padding:0 16px; }
+  .nav-title { display:none; }
+  .hero { padding:100px 20px 60px; }
+  section { padding:64px 20px; }
+  .divider { padding:0 20px; }
+  .lesson-item { grid-template-columns:40px 1fr; gap:0 16px; }
+  .practice-wrap { padding:24px 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-back" href="../">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="nav-back-logo">
+      <img class="logo-dark" src="../assets/logo-app-icon.png" alt="Fatih">
+      <img class="logo-light" src="../assets/logo-concept.png" alt="Fatih">
+    </div>
+    Library
+  </a>
+  <div class="nav-title">On Difficulty</div>
+  <div class="nav-right">
+    <div class="theme-toggle">
+      <button data-theme-btn="light">Light</button>
+      <button data-theme-btn="dark">Dark</button>
+      <button data-theme-btn="medieval">Medieval</button>
+      <button data-theme-btn="fatih">Fatih</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-orb"></div>
+  <p class="hero-meta">Faith &amp; Islam</p>
+  <p class="hero-eyebrow">A reminder</p>
+  <h1>On Difficulty</h1>
+  <p class="hero-sub">Four perspectives from Umar (RA) on how to stand inside hardship without losing your footing.</p>
+</div>
+
+<!-- SECTION 1: CONTEXT -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section class="fade-in">
+  <span class="eyebrow">When it hits</span>
+  <h2>The problem is not the hardship. It is what it does to your sight.</h2>
+  <p>When difficulty arrives, most people do one of three things: they panic, catastrophise, or search for the nearest exit. None of these responses remove the difficulty. What they do is cloud the view.</p>
+  <p>The question is not how to escape what is hard. The question is how to see it clearly while you are inside it. That requires a lens. Without one, the mind fills the space with its worst reading of events.</p>
+  <p><strong>Umar (RA)</strong> understood this. He did not teach people how to avoid difficulty. He taught them how to stand inside it. He identified three things he felt cause for gratitude in every hardship that reached him, not despite the hardship, but within it. A fourth perspective follows naturally from the same logic.</p>
+
+  <blockquote>
+    <p>How astonishing the believer's affair is. Indeed, all of his affairs are good, and this is for none but the believer. If something good happens to him, he is grateful, which is good for him. And if something bad happens to him, he shows patience, which is good for him.</p>
+    <cite>— The Prophet (peace be upon him), Sahih Muslim 2999</cite>
+  </blockquote>
+
+  <p>This is not a platitude. It is a structural claim: that the believer's circumstances, in either direction, are set up for their benefit. The work is to see the structure clearly when the difficulty is right in front of you.</p>
+</section>
+
+<!-- SECTION 2: THE FOUR LENSES -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section class="fade-in">
+  <span class="eyebrow">The playbook</span>
+  <h2>Four lenses for when the ground shifts</h2>
+  <p>Each of these is a perspective to apply, not a theory to hold. Read through them slowly. Return to whichever one you need most right now.</p>
+
+  <div class="lessons">
+    <div class="lesson-item">
+      <div class="lesson-num">01</div>
+      <div>
+        <div class="lesson-title">It could have been far worse</div>
+        <div class="lesson-body">For every calamity that reaches you, a greater one was held back. You see the difficulty in front of you, but you cannot see the ten that did not come. The mercy of Allah is not only in the absence of hardship. It is also in the measure of it. What you are carrying right now is already a reduced version of what could have landed.
+        <br><br>When you sit in difficulty, the first question to ask is not "why is this happening?" It is "what has not happened?" Begin to count. The list, when you are honest about it, is long.</div>
+        <span class="lesson-tag">Perspective · Umar (RA)</span>
+      </div>
+    </div>
+    <div class="lesson-item">
+      <div class="lesson-num">02</div>
+      <div>
+        <div class="lesson-title">It is clearing your account</div>
+        <div class="lesson-body">Every pain, every sleepless night, every thing you carry with patience: it works. Not just in the abstract, but specifically. The believer does not carry difficulty without it returning something. It is not merely loss. It is exchange. The sins that have accumulated over years are being addressed by the hardship you did not choose.
+        <br><br>This perspective does not make the pain disappear. It changes what the pain is for. Bearing it with patience is not passive. It is active participation in something that benefits you.</div>
+        <span class="lesson-tag">Perspective · Umar (RA)</span>
+      </div>
+    </div>
+    <div class="lesson-item">
+      <div class="lesson-num">03</div>
+      <div>
+        <div class="lesson-title">Your faith is still intact</div>
+        <div class="lesson-body">The hardship is in the dunya. It has not touched your iman, your prayer, your certainty, your relationship with Allah. Think carefully about the worst version of this situation. The worst thing that can happen to a person is not financial loss, or illness, or failure. It is the loss of faith. As long as that holds, so does everything that actually matters.
+        <br><br>This is not minimising what is hard. It is placing it in the right category. Dunya difficulties are real. But they are temporary, bounded, and survivable. A rupture of faith is none of those things.</div>
+        <span class="lesson-tag">Perspective · Umar (RA)</span>
+      </div>
+    </div>
+    <div class="lesson-item">
+      <div class="lesson-num">04</div>
+      <div>
+        <div class="lesson-title">This difficulty is a summons</div>
+        <div class="lesson-body">Ease makes people forgetful. Hardship breaks that forgetfulness open. It is not only a test. It is an invitation to a conversation with Allah that prosperity was quietly closing. The door that difficulty opens is the door of sincere dua, honest need, and genuine dependence.
+        <br><br>Answer it. Pour your heart out. Name your weakness, name your need, then hold the certainty that He will bring ease after it. He does not summon you to a conversation He intends to ignore.</div>
+        <span class="lesson-tag">Perspective · Principle</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: INTERACTIVE -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<section class="fade-in" id="practice">
+  <span class="eyebrow">Apply it now</span>
+  <h2>Run the lenses</h2>
+  <p>For each perspective, sit with it genuinely before you check it off. Not a quick read. A real pause. These reset at midnight.</p>
+  <div class="practice-wrap" id="practice-wrap"></div>
+</section>
+
+<!-- CLOSING -->
+<div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+<div class="closing fade-in">
+  <div class="closing-orb"></div>
+  <span class="eyebrow">A final reminder</span>
+  <h2>The lens is the work.<br>Pick it up every time.</h2>
+  <p style="max-width:500px;margin:0 auto;color:var(--fg2);">You will not always feel calm when difficulty arrives. You are not required to. What you are required to do is return to the right lens, again and again, until the view clears. The four perspectives here are not one-time realisations. They are tools. Use them as often as you need to.</p>
+  <div class="arabic-close">فَإِنَّ مَعَ الْعُسْرِ يُسْرًا · إِنَّ مَعَ الْعُسْرِ يُسْرًا</div>
+  <p class="arabic-sub">"So, surely with hardship comes ease. Surely with that hardship comes more ease."<br>— Surah Ash-Sharh, 94:5-6</p>
+</div>
+
+<script src="../assets/theme.js"></script>
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+const TODAY = new Date().toISOString().slice(0,10);
+const KEY = 'hardship-lenses-' + TODAY;
+const LENSES = [
+  { id:'worse',  title:'Sat with: it could have been far worse',  desc:'Count what has not happened. Be honest about the length of the list.' },
+  { id:'expiate',title:'Sat with: this is clearing my account',    desc:'Bear the difficulty with patience. It is not going to waste.' },
+  { id:'faith',  title:'Sat with: my faith is still intact',       desc:'The hardship is in the dunya. The thing that matters most is still yours.' },
+  { id:'summons',title:'Sat with: this is a summons to dua',       desc:'Answer it. Pour your heart out. Hold the certainty that ease is coming.' },
+];
+
+function loadPractice() {
+  const saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+  const wrap = document.getElementById('practice-wrap');
+  wrap.innerHTML = '';
+  LENSES.forEach(l => {
+    const done = !!saved[l.id];
+    const el = document.createElement('div');
+    el.className = 'practice-item' + (done ? ' done' : '');
+    el.innerHTML = `
+      <div class="practice-check${done?' checked':''}" data-id="${l.id}"></div>
+      <div class="practice-content">
+        <div class="practice-title">${l.title}</div>
+        <div class="practice-desc">${l.desc}</div>
+      </div>`;
+    wrap.appendChild(el);
+  });
+  wrap.querySelectorAll('.practice-check').forEach(box => {
+    box.onclick = () => {
+      const data = JSON.parse(localStorage.getItem(KEY) || '{}');
+      data[box.dataset.id] = !data[box.dataset.id];
+      localStorage.setItem(KEY, JSON.stringify(data));
+      loadPractice();
+    };
+  });
+}
+loadPractice();
+</script>
+</body>
+</html>

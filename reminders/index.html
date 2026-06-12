@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reminders Library — Fatih Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Josefin+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Scheherazade+New:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){var t=localStorage.getItem('fatih-lib-theme');document.documentElement.setAttribute('data-theme',['light','dark','medieval','fatih'].includes(t)?t:'light');})();</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ─── FATIH (default) ─── */
+:root,
+[data-theme="fatih"] {
+  --bg: #0B1120; --bg-card: #162035; --bg-raised: #1C2840;
+  --fg: #EDF1F5; --fg-muted: rgba(237,241,245,0.52); --fg-ghost: rgba(237,241,245,0.10);
+  --accent: #3BBFCC; --accent-soft: rgba(59,191,204,0.10); --accent-border: rgba(59,191,204,0.20);
+  --accent-glow: 0 0 16px rgba(59,191,204,0.18);
+  --gold: #C9973A; --gold-soft: rgba(201,151,58,0.12); --gold-border: rgba(201,151,58,0.24);
+  --teal: #2ABFAA; --teal-soft: rgba(42,191,170,0.10); --teal-border: rgba(42,191,170,0.22);
+  --violet: #9B7FCC; --violet-soft: rgba(155,127,204,0.10); --violet-border: rgba(155,127,204,0.22);
+  --border: rgba(59,191,204,0.14); --border-soft: rgba(237,241,245,0.07);
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.35); --shadow-raised: 0 4px 24px rgba(0,0,0,0.5);
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 24px; --r-full: 9999px;
+  --font-display: 'Josefin Sans', sans-serif; --font-body: 'DM Sans', sans-serif; --font-quote: 'Playfair Display', Georgia, serif;
+  --nav-bg: rgba(11,17,32,0.92); --eyebrow-color: var(--accent);
+  --card-hover: rgba(59,191,204,0.40);
+}
+
+/* ─── LIGHT ─── */
+[data-theme="light"] {
+  --bg: #f9f8f4; --bg-card: #ffffff; --bg-raised: #f1f0eb;
+  --fg: #1a1a18; --fg-muted: #8a8a80; --fg-ghost: rgba(26,26,24,0.08);
+  --accent: #E8854A; --accent-soft: rgba(232,133,74,0.08); --accent-border: rgba(232,133,74,0.22);
+  --accent-glow: none;
+  --gold: #c8a84e; --gold-soft: rgba(200,168,78,0.10); --gold-border: rgba(200,168,78,0.22);
+  --teal: #3CB89A; --teal-soft: rgba(60,184,154,0.08); --teal-border: rgba(60,184,154,0.22);
+  --violet: #7B6BAE; --violet-soft: rgba(123,107,174,0.08); --violet-border: rgba(123,107,174,0.22);
+  --border: #e6e5de; --border-soft: #eeedea;
+  --shadow-card: 0 2px 10px rgba(0,0,0,0.05); --shadow-raised: 0 4px 20px rgba(0,0,0,0.07);
+  --r-sm: 8px; --r-md: 10px; --r-lg: 14px; --r-xl: 20px; --r-full: 9999px;
+  --font-display: 'Playfair Display', Georgia, serif; --font-body: 'DM Sans', system-ui, sans-serif; --font-quote: 'Playfair Display', Georgia, serif;
+  --nav-bg: rgba(249,248,244,0.92); --eyebrow-color: var(--accent);
+  --card-hover: #E8854A;
+}
+
+/* ─── DARK ─── */
+[data-theme="dark"] {
+  --bg: #0E0F0D; --bg-card: #161713; --bg-raised: #1E2019;
+  --fg: #F0EDE6; --fg-muted: #8A8A7E; --fg-ghost: rgba(240,237,230,0.06);
+  --accent: #C9A84C; --accent-soft: rgba(201,168,76,0.08); --accent-border: rgba(201,168,76,0.22);
+  --accent-glow: none;
+  --gold: #C9A84C; --gold-soft: rgba(201,168,76,0.10); --gold-border: rgba(201,168,76,0.24);
+  --teal: #7A8C72; --teal-soft: rgba(122,140,114,0.08); --teal-border: rgba(122,140,114,0.22);
+  --violet: #9B7FCC; --violet-soft: rgba(155,127,204,0.08); --violet-border: rgba(155,127,204,0.22);
+  --border: #2A2B27; --border-soft: #242520;
+  --shadow-card: 0 2px 10px rgba(0,0,0,0.4); --shadow-raised: 0 4px 24px rgba(0,0,0,0.55);
+  --r-sm: 8px; --r-md: 10px; --r-lg: 14px; --r-xl: 20px; --r-full: 9999px;
+  --font-display: 'Playfair Display', Georgia, serif; --font-body: 'DM Sans', system-ui, sans-serif; --font-quote: 'Playfair Display', Georgia, serif;
+  --nav-bg: rgba(14,15,13,0.95); --eyebrow-color: #7A8C72;
+  --card-hover: var(--accent);
+}
+
+/* ─── MEDIEVAL ─── */
+[data-theme="medieval"] {
+  --bg: #0E0F0D; --bg-card: #161713; --bg-raised: #1E2019;
+  --fg: #F0EDE6; --fg-muted: #8A8A7E; --fg-ghost: rgba(240,237,230,0.06);
+  --accent: #C9A84C; --accent-soft: rgba(201,168,76,0.08); --accent-border: rgba(201,168,76,0.22);
+  --accent-glow: none;
+  --gold: #C9A84C; --gold-soft: rgba(201,168,76,0.10); --gold-border: rgba(201,168,76,0.24);
+  --teal: #7A8C72; --teal-soft: rgba(122,140,114,0.08); --teal-border: rgba(122,140,114,0.22);
+  --violet: #9B7FCC; --violet-soft: rgba(155,127,204,0.08); --violet-border: rgba(155,127,204,0.22);
+  --border: #2A2B27; --border-soft: #242520;
+  --shadow-card: 0 2px 10px rgba(0,0,0,0.4); --shadow-raised: 0 4px 24px rgba(0,0,0,0.55);
+  --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 10px; --r-full: 9999px;
+  --font-display: 'Cormorant Garamond', Georgia, serif; --font-body: 'Inter', system-ui, sans-serif; --font-quote: 'Cormorant Garamond', Georgia, serif;
+  --nav-bg: rgba(14,15,13,0.95); --eyebrow-color: #7A8C72;
+  --card-hover: var(--accent);
+}
+
+/* ─── BASE ─── */
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 15px; line-height: 1.65;
+  overflow-x: hidden; -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 48px; height: 60px;
+  background: var(--nav-bg); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-soft);
+}
+.nav-back {
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none; color: var(--fg-muted);
+  font-size: 13px; font-weight: 500; transition: color 0.2s; flex-shrink: 0;
+}
+.nav-back:hover { color: var(--fg); }
+.nav-back svg { width: 14px; height: 14px; stroke-width: 2; }
+.nav-back-logo { width: 24px; height: 24px; border-radius: 5px; overflow: hidden; flex-shrink: 0; }
+.nav-back-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nav-back-logo .logo-light { display: none; }
+[data-theme="light"] .nav-back-logo .logo-dark { display: none; }
+[data-theme="light"] .nav-back-logo .logo-light { display: block; }
+
+.nav-title {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-display); font-size: 15px; font-weight: 500;
+  color: var(--fg); white-space: nowrap;
+}
+[data-theme="fatih"] .nav-title { font-weight: 600; letter-spacing: 0.06em; font-size: 14px; }
+[data-theme="medieval"] .nav-title { font-weight: 300; letter-spacing: 0.08em; }
+
+.nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.theme-toggle {
+  display: flex; gap: 2px;
+  background: var(--bg-raised); border: 1px solid var(--border-soft);
+  border-radius: var(--r-full); padding: 3px;
+}
+.theme-toggle button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 5px 10px; border-radius: var(--r-full);
+  font-family: var(--font-body); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--fg-muted); transition: background 0.18s ease, color 0.18s ease;
+  white-space: nowrap;
+}
+.theme-toggle button.active { background: var(--accent); color: var(--bg); }
+[data-theme="dark"] .theme-toggle button.active,
+[data-theme="medieval"] .theme-toggle button.active { color: #0E0F0D; }
+
+/* ─── HERO ─── */
+.hero {
+  padding: 130px 24px 64px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero-orb {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 350px; border-radius: 50%; pointer-events: none; opacity: 0.5;
+}
+[data-theme="fatih"] .hero-orb { background: radial-gradient(ellipse at center, rgba(59,191,204,0.08) 0%, transparent 65%); }
+[data-theme="light"] .hero-orb { background: radial-gradient(ellipse at center, rgba(232,133,74,0.08) 0%, rgba(212,96,122,0.04) 50%, transparent 70%); }
+[data-theme="dark"] .hero-orb,
+[data-theme="medieval"] .hero-orb { background: radial-gradient(ellipse at center, rgba(201,168,76,0.05) 0%, transparent 65%); }
+
+.hero-eyebrow {
+  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--eyebrow-color); margin-bottom: 16px; font-weight: 500; display: block;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 60px);
+  font-weight: 600; line-height: 1.1; color: var(--fg);
+  margin-bottom: 14px;
+}
+[data-theme="light"] .hero h1,
+[data-theme="dark"] .hero h1 { font-weight: 500; }
+[data-theme="medieval"] .hero h1 { font-weight: 300; }
+.hero-sub {
+  font-size: 15px; color: var(--fg-muted); max-width: 440px;
+  margin: 0 auto; line-height: 1.75;
+}
+
+/* ─── CONTROLS ─── */
+.controls-wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding: 0 32px 32px;
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+}
+.search-input {
+  flex: 1; min-width: 200px; max-width: 340px;
+  background: var(--bg-card); border: 1px solid var(--border-soft);
+  border-radius: var(--r-full); padding: 10px 18px;
+  font-family: var(--font-body); font-size: 13px; color: var(--fg);
+  outline: none; transition: border-color 0.2s;
+}
+.search-input::placeholder { color: var(--fg-muted); }
+.search-input:focus { border-color: var(--accent); }
+.tag-filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag-btn {
+  background: var(--bg-raised); border: 1px solid var(--border-soft);
+  border-radius: var(--r-full); padding: 6px 14px;
+  font-family: var(--font-body); font-size: 12px; font-weight: 500;
+  color: var(--fg-muted); cursor: pointer; transition: all 0.18s ease;
+}
+.tag-btn:hover { border-color: var(--accent); color: var(--fg); }
+.tag-btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+[data-theme="dark"] .tag-btn.active,
+[data-theme="medieval"] .tag-btn.active { color: #0E0F0D; }
+
+/* ─── GRID ─── */
+.reminders-grid {
+  max-width: 1080px; margin: 0 auto;
+  padding: 0 32px 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+/* ─── REMINDER CARD ─── */
+.reminder-card {
+  background: var(--bg-card); border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg); padding: 28px 24px 22px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  display: flex; flex-direction: column; gap: 0;
+}
+.reminder-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--card-hover);
+  box-shadow: var(--shadow-raised);
+}
+[data-theme="fatih"] .reminder-card:hover { box-shadow: var(--shadow-raised), var(--accent-glow); }
+
+.reminder-type {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  border-radius: var(--r-full); padding: 3px 9px; border: 1px solid;
+  display: inline-flex; align-items: center; width: fit-content;
+  margin-bottom: 18px;
+}
+.reminder-type.hadith  { color: var(--gold);   background: var(--gold-soft);   border-color: var(--gold-border);   }
+.reminder-type.quran   { color: var(--teal);   background: var(--teal-soft);   border-color: var(--teal-border);   }
+.reminder-type.saying  { color: var(--accent); background: var(--accent-soft); border-color: var(--accent-border); }
+.reminder-type.playbook{ color: var(--violet); background: var(--violet-soft); border-color: var(--violet-border); }
+
+.reminder-text {
+  font-family: var(--font-quote); font-size: 17px; font-style: italic;
+  color: var(--fg); line-height: 1.6; flex: 1; margin-bottom: 18px;
+}
+[data-theme="fatih"] .reminder-text { font-family: 'DM Sans', sans-serif; font-style: normal; font-size: 15px; }
+[data-theme="medieval"] .reminder-text { font-size: 18px; }
+
+.reminder-attr {
+  font-size: 12px; color: var(--fg-muted); line-height: 1.5; margin-bottom: 16px;
+  padding-top: 14px; border-top: 1px solid var(--border-soft);
+}
+.reminder-attr strong { color: var(--fg); font-weight: 500; display: block; margin-bottom: 2px; }
+
+.reminder-footer {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.reminder-source {
+  font-size: 11px; color: var(--fg-muted); letter-spacing: 0.04em;
+}
+
+.no-results {
+  grid-column: 1 / -1; text-align: center; padding: 64px 24px;
+  color: var(--fg-muted); font-size: 14px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--border-soft); padding: 28px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-name { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--fg-muted); letter-spacing: 0.06em; }
+.footer-credit { font-size: 11px; color: var(--fg-muted); letter-spacing: 0.04em; }
+
+/* ─── FADE IN ─── */
+.fade-in { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  nav { padding: 0 16px; }
+  .nav-title { display: none; }
+  .theme-toggle button { padding: 5px 8px; font-size: 10px; }
+  .hero { padding: 100px 20px 48px; }
+  .controls-wrap { padding: 0 16px 24px; }
+  .search-input { max-width: 100%; }
+  .reminders-grid { padding: 0 16px 80px; grid-template-columns: 1fr; }
+  footer { padding: 20px 16px; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-back" href="../">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="nav-back-logo">
+      <img class="logo-dark" src="../assets/logo-app-icon.png" alt="Fatih">
+      <img class="logo-light" src="../assets/logo-concept.png" alt="Fatih">
+    </div>
+    Library
+  </a>
+  <div class="nav-title">Reminders Library</div>
+  <div class="nav-right">
+    <div class="theme-toggle">
+      <button data-theme-btn="light">Light</button>
+      <button data-theme-btn="dark">Dark</button>
+      <button data-theme-btn="medieval">Medieval</button>
+      <button data-theme-btn="fatih">Fatih</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero fade-in">
+  <div class="hero-orb"></div>
+  <span class="hero-eyebrow">Quick reference</span>
+  <h1>Reminders Library</h1>
+  <p class="hero-sub">Hadith, Quran, sayings, and playbooks. Searchable and tagged. For when you need a reminder fast.</p>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls-wrap fade-in">
+  <input class="search-input" type="search" placeholder="Search reminders..." id="reminder-search">
+  <div class="tag-filters">
+    <button class="tag-btn active" data-filter="all">All</button>
+    <button class="tag-btn" data-filter="hadith">Hadith</button>
+    <button class="tag-btn" data-filter="quran">Quran</button>
+    <button class="tag-btn" data-filter="saying">Saying</button>
+    <button class="tag-btn" data-filter="playbook">Playbook</button>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="reminders-grid" id="reminders-grid"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Fatih Library</div>
+  <div class="footer-credit">More reminders added with each new guide</div>
+</footer>
+
+<script src="../assets/theme.js"></script>
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+const REMINDERS = [
+  {
+    id: 'believer-affair',
+    type: 'hadith',
+    text: 'How astonishing the believer\'s affair is. Indeed, all of his affairs are good, and this is for none but the believer. If something good happens to him, he is grateful, which is good for him. And if something bad happens to him, he shows patience, which is good for him.',
+    attribution: 'The Prophet (peace be upon him)',
+    ref: 'Sahih Muslim 2999',
+    source: 'On Difficulty',
+  },
+  {
+    id: 'sharh-5-6',
+    type: 'quran',
+    text: 'So, surely with hardship comes ease. Surely with that hardship comes more ease.',
+    attribution: 'Surah Ash-Sharh',
+    ref: '94:5-6 · The Clear Quran',
+    source: 'On Difficulty',
+  },
+  {
+    id: 'nahl-53',
+    type: 'quran',
+    text: 'And whatever blessing you have, it is from Allah.',
+    attribution: 'Surah An-Nahl',
+    ref: '16:53 · The Clear Quran',
+    source: 'Gratitude',
+  },
+  {
+    id: 'baqarah-286',
+    type: 'quran',
+    text: 'Allah does not require of any soul more than what it can afford.',
+    attribution: 'Surah Al-Baqarah',
+    ref: '2:286 · The Clear Quran',
+    source: 'On Difficulty',
+  },
+  {
+    id: 'umar-worse',
+    type: 'playbook',
+    text: 'For every calamity that reaches you, a greater one was held back. What you are carrying right now is already a reduced version of what could have landed. Count what has not happened. The list is long.',
+    attribution: 'Umar (RA)',
+    ref: 'Perspective 1 of 4 on hardship',
+    source: 'On Difficulty',
+  },
+  {
+    id: 'umar-expiate',
+    type: 'playbook',
+    text: 'Every pain you carry with patience is not going to waste. It is clearing your account. The believer does not carry difficulty without it returning something. It is not merely loss. It is exchange.',
+    attribution: 'Umar (RA)',
+    ref: 'Perspective 2 of 4 on hardship',
+    source: 'On Difficulty',
+  },
+  {
+    id: 'umar-faith',
+    type: 'playbook',
+    text: 'The hardship is in the dunya. It has not touched your iman or your certainty. The worst thing that can happen to a person is the loss of faith. As long as that holds, so does everything that actually matters.',
+    attribution: 'Umar (RA)',
+    ref: 'Perspective 3 of 4 on hardship',
+    source: 'On Difficulty',
+  },
+  {
+    id: 'umar-summons',
+    type: 'playbook',
+    text: 'Ease makes people forgetful. Hardship breaks that forgetfulness open. It is not only a test. It is an invitation to a conversation with Allah that prosperity was quietly closing. Answer it. He does not summon you to a conversation He intends to ignore.',
+    attribution: 'Principle',
+    ref: 'Perspective 4 of 4 on hardship',
+    source: 'On Difficulty',
+  },
+  {
+    id: 'tawakkul-note',
+    type: 'saying',
+    text: 'Note every time you put your trust in Allah and He came through. The human memory is quick to attribute success to effort and slow to remember the moments that made no sense at all. Keep a record. Read it when doubt sets in.',
+    attribution: 'Fatih Library',
+    ref: 'Practice note',
+    source: 'Gratitude',
+  },
+];
+
+function renderReminders(list) {
+  const grid = document.getElementById('reminders-grid');
+  if (!list.length) {
+    grid.innerHTML = '<p class="no-results">No reminders found.</p>';
+    return;
+  }
+  grid.innerHTML = list.map(r => `
+    <div class="reminder-card">
+      <span class="reminder-type ${r.type}">${r.type}</span>
+      <div class="reminder-text">${r.text}</div>
+      <div class="reminder-attr">
+        <strong>${r.attribution}</strong>
+        ${r.ref}
+      </div>
+      <div class="reminder-footer">
+        <span class="reminder-source">${r.source}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterReminders() {
+  const query = document.getElementById('reminder-search').value.toLowerCase();
+  const active = document.querySelector('.tag-btn.active').dataset.filter;
+  const filtered = REMINDERS.filter(r => {
+    const matchTag = active === 'all' || r.type === active;
+    const matchQuery = !query || r.text.toLowerCase().includes(query) || r.attribution.toLowerCase().includes(query) || r.ref.toLowerCase().includes(query);
+    return matchTag && matchQuery;
+  });
+  renderReminders(filtered);
+}
+
+document.getElementById('reminder-search').addEventListener('input', filterReminders);
+document.querySelectorAll('.tag-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    filterReminders();
+  });
+});
+
+renderReminders(REMINDERS);
+</script>
+</body>
+</html>
