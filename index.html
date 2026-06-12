@@ -346,10 +346,16 @@ nav {
   padding: 2px 8px;
 }
 
-/* ─── ACTIONS LIBRARY BANNER ─── */
+/* ─── LIBRARY BANNERS ─── */
 .actions-banner-wrap {
   max-width: 1080px; margin: 0 auto;
   padding: 0 32px 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 14px;
+}
+@media (max-width: 640px) {
+  .actions-banner-wrap { grid-template-columns: 1fr; }
 }
 .actions-banner {
   display: flex; align-items: center; gap: 20px;
@@ -435,7 +441,7 @@ footer {
   .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .card { padding: 18px 14px 14px; }
   .card-desc { display: none; }
-  .actions-banner-wrap { padding: 0 16px 80px; }
+  .actions-banner-wrap { padding: 0 16px 80px; grid-template-columns: 1fr; }
   .actions-banner { padding: 20px 18px; gap: 14px; }
   .actions-banner-desc { display: none; }
   footer { padding: 20px 16px; flex-direction: column; text-align: center; }
@@ -561,6 +567,11 @@ footer {
     <span class="category-eyebrow">Category 04</span>
     <div class="category-title">Healing &amp; Emotion</div>
     <div class="cards">
+      <a class="card" href="hardship/">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-body"><div class="card-title">On Difficulty</div><div class="card-desc">Four perspectives from Umar (RA) on how to see hardship clearly.</div></div>
+        <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
       <div class="card soon"><span class="soon-badge">Soon</span>
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="card-body"><div class="card-title">Anxiety</div><div class="card-desc">Understand what your nervous system is trying to say.</div></div>
@@ -614,16 +625,29 @@ footer {
 
 </main>
 
-<!-- ACTIONS LIBRARY BANNER -->
+<!-- LIBRARY BANNERS -->
 <div class="actions-banner-wrap fade-in">
   <a class="actions-banner" href="actions/">
     <div class="actions-banner-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l3 3L22 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <div class="actions-banner-body">
-      <div class="actions-banner-eyebrow">New</div>
+      <div class="actions-banner-eyebrow">Library</div>
       <div class="actions-banner-title">Actions Library</div>
       <div class="actions-banner-desc">Everything distilled into things worth doing. Searchable and tagged by topic.</div>
+    </div>
+    <div class="actions-banner-arrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </a>
+  <a class="actions-banner" href="reminders/">
+    <div class="actions-banner-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="actions-banner-body">
+      <div class="actions-banner-eyebrow">Library</div>
+      <div class="actions-banner-title">Reminders Library</div>
+      <div class="actions-banner-desc">Hadith, Quran, sayings, and playbooks. Quick reference for when you need it.</div>
     </div>
     <div class="actions-banner-arrow">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
